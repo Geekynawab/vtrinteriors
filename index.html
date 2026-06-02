@@ -3,156 +3,776 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VTR Projects & Interiors | Luxury Interior Design, Hyderabad</title>
-  <meta name="description" content="VTR Projects & Interiors — Luxury interior design for homes and offices in Hyderabad. Contact Supriyaa Sista on WhatsApp." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>VTR Projects & Interiors | Interior Design Hyderabad</title>
+  <meta name="description" content="VTR Projects & Interiors — Visual To Reality. 100+ projects completed. Interior design for homes and offices across Hyderabad. Crafting spaces since 2021." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #1a1208; min-height: 100vh; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0f0b06; color: #f5e8c8; overflow-x: hidden; }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 24px;
-      background: linear-gradient(160deg, #1a1208 0%, #2c1f0a 100%);
+    :root {
+      --gold: #d4a843;
+      --gold-dim: #a08860;
+      --cream: #f5e8c8;
+      --dark1: #0f0b06;
+      --dark2: #1a1208;
+      --dark3: #120d05;
+      --muted: #8a7050;
+      --border: rgba(212,168,67,0.15);
     }
 
-    .hero-content { max-width: 860px; width: 100%; }
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 60px;
+      transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+    }
+    header.scrolled {
+      background: rgba(10,7,2,0.96);
+      padding: 14px 60px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
+    .logo { text-decoration: none; line-height: 1; }
+    .logo-main { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--gold); letter-spacing: 5px; font-weight: 700; display: block; }
+    .logo-sub { font-size: 0.58rem; color: var(--gold-dim); letter-spacing: 4px; text-transform: uppercase; display: block; margin-top: 3px; }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a { color: var(--cream); text-decoration: none; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; opacity: 0.8; transition: color 0.2s, opacity 0.2s; }
+    nav a:hover { color: var(--gold); opacity: 1; }
+    .btn-quote { background: transparent; border: 1px solid var(--gold); color: var(--gold) !important; opacity: 1 !important; padding: 10px 24px; border-radius: 2px; transition: background 0.2s, color 0.2s !important; }
+    .btn-quote:hover { background: var(--gold); color: var(--dark1) !important; }
 
-    .gold-line { width: 64px; height: 1px; background: #d4a843; margin: 0 auto 32px; }
-
-    .tagline {
-      font-size: 0.85rem;
-      letter-spacing: 7px;
-      text-transform: uppercase;
-      color: #d4a843;
-      font-weight: 500;
-      margin-bottom: 28px;
+    /* ── HERO ── */
+    .hero { min-height: 100vh; position: relative; display: flex; align-items: center; background: var(--dark2); overflow: hidden; }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      /* Replace url('hero.jpg') with your actual photo. Remove the gradients once photo is added. */
+      background:
+        linear-gradient(105deg, rgba(15,11,6,0.97) 0%, rgba(15,11,6,0.72) 55%, rgba(15,11,6,0.9) 100%),
+        url('hero.jpg') center / cover no-repeat;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 64px; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+      padding: 140px 60px 80px; width: 100%;
     }
 
-    .brand {
+    /* Floating social strip */
+    .hero-socials {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      z-index: 10; display: flex; flex-direction: column; gap: 10px;
+    }
+    .soc-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: transform 0.2s;
+    }
+    .soc-icon:hover { transform: scale(1.12); }
+    .soc-icon.wa { background: #25D366; box-shadow: 0 4px 14px rgba(37,211,102,0.35); }
+    .soc-icon svg { width: 19px; height: 19px; fill: #fff; }
+
+    /* Hero left */
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .hero-headline {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 4.5vw, 4rem);
-      color: #f5e8c8;
-      line-height: 1.1;
-      margin-bottom: 16px;
-      font-weight: 600;
-      white-space: nowrap;
+      font-size: clamp(2.4rem, 4.8vw, 4rem);
+      line-height: 1.1; color: var(--cream);
+      margin-bottom: 12px; min-height: 4.6rem;
     }
+    .hero-headline .rot { display: block; opacity: 1; transition: opacity 0.5s; }
+    .hero-headline .rot.fade { opacity: 0; }
+    .hero-italic { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.3rem); color: var(--gold-dim); margin-bottom: 28px; }
+    .hero-rule { width: 56px; height: 1px; background: var(--gold); margin-bottom: 22px; }
+    .hero-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.85; margin-bottom: 36px; max-width: 480px; }
+    .hero-stats { display: flex; gap: 44px; }
+    .stat-val { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); line-height: 1; font-weight: 700; }
+    .stat-key { font-size: 0.68rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-    .sub-brand {
+    /* Hero form */
+    .hero-form-card {
+      background: rgba(20,14,5,0.93); border: 1px solid var(--border);
+      border-radius: 4px; padding: 36px 32px;
+      backdrop-filter: blur(12px);
+    }
+    .hfc-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--cream); margin-bottom: 5px; }
+    .hfc-sub { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 24px; }
+    .fgrp { margin-bottom: 14px; }
+    .fgrp input, .fgrp select, .fgrp textarea {
+      width: 100%; background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border); border-radius: 3px;
+      color: var(--cream); font-family: 'Inter', sans-serif; font-size: 0.85rem;
+      padding: 11px 15px; outline: none; transition: border-color 0.2s;
+    }
+    .fgrp select option { background: var(--dark2); color: var(--cream); }
+    .fgrp input::placeholder, .fgrp textarea::placeholder { color: var(--muted); }
+    .fgrp input:focus, .fgrp select:focus, .fgrp textarea:focus { border-color: rgba(212,168,67,0.5); }
+    .fgrp textarea { resize: none; height: 76px; }
+    .btn-submit {
+      width: 100%; background: var(--gold); color: #0f0b06;
+      border: none; border-radius: 3px; padding: 13px;
+      font-family: 'Inter', sans-serif; font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #c49a38; }
+    .form-wa-line { margin-top: 13px; text-align: center; font-size: 0.72rem; color: var(--muted); }
+    .form-wa-line a { color: #25D366; text-decoration: none; }
+    .form-wa-line a:hover { text-decoration: underline; }
+
+    /* ── SECTION COMMONS ── */
+    .sec { padding: 96px 0; }
+    .sec-alt { background: var(--dark3); }
+    .sec-in { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+    .sec-label { font-size: 0.68rem; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--cream); line-height: 1.2; margin-bottom: 14px; }
+    .sec-rule { width: 44px; height: 1px; background: var(--gold); margin-bottom: 22px; }
+    .sec-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start; margin-top: 56px; }
+    .about-img-box {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(145deg, #2c1f0a, #1a1208);
+      border: 1px solid var(--border); border-radius: 3px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 2px; text-align: center; gap: 10px;
+    }
+    .about-img-box svg { width: 40px; height: 40px; fill: rgba(212,168,67,0.18); }
+    .about-text p { font-size: 0.92rem; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
+    .philosophy-block { margin-top: 28px; padding: 26px 28px; border-left: 2px solid var(--gold); background: rgba(212,168,67,0.03); }
+    .phi-label { font-size: 0.65rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .phi-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.97rem; color: var(--cream); line-height: 1.75; }
+
+    /* ── SERVICES ── */
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 52px; }
+    .svc-card {
+      background: rgba(26,18,8,0.7); border: 1px solid var(--border);
+      border-radius: 3px; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .svc-card:hover { border-color: rgba(212,168,67,0.38); transform: translateY(-5px); }
+    .svc-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #261a08, #1a1208);
+      display: flex; align-items: center; justify-content: center;
+      /* Replace background with: background-image: url('img/service-name.jpg'); background-size: cover; */
+    }
+    .svc-img svg { width: 32px; height: 32px; fill: rgba(212,168,67,0.2); }
+    .svc-body { padding: 18px 18px 20px; }
+    .svc-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--cream); line-height: 1.3; margin-bottom: 6px; }
+    .svc-tag { font-size: 0.62rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ── PROCESS ── */
+    .process-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 60px; margin-top: 56px;
+    }
+    .proc-item {
+      display: flex; gap: 22px; align-items: flex-start;
+      padding: 26px 0; border-bottom: 1px solid rgba(212,168,67,0.08);
+    }
+    .proc-item.no-border { border-bottom: none; }
+    .proc-num {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      color: #a08860;
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 36px;
+      font-size: 2rem; color: rgba(212,168,67,0.13);
+      font-weight: 700; line-height: 1; flex-shrink: 0; min-width: 44px; padding-top: 2px;
     }
+    .proc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); line-height: 1.4; padding-top: 4px; }
 
-    .gold-line-bottom { width: 64px; height: 1px; background: #d4a843; margin: 0 auto 36px; }
+    /* ── SPECIALTIES ── */
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
+    .spec-card { border: 1px solid var(--border); padding: 52px 40px; text-align: center; transition: border-color 0.3s; }
+    .spec-card:hover { border-color: rgba(212,168,67,0.4); }
+    .spec-icon { margin-bottom: 20px; }
+    .spec-icon svg { width: 34px; height: 34px; fill: var(--gold-dim); }
+    .spec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--cream); }
 
-    .description {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: #8a7050;
-      line-height: 1.8;
-      font-weight: 300;
-      margin-bottom: 52px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    /* ── PARTNERS ── */
+    .marquee-outer { margin-top: 48px; overflow: hidden; padding: 16px 0; }
+    .marquee-track { display: flex; gap: 56px; width: max-content; animation: scrolll 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .p-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; transition: color 0.2s; }
+    .p-name:hover { color: var(--gold); }
+    .p-sep { color: rgba(212,168,67,0.25); }
+    @keyframes scrolll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── FOOTER ── */
+    footer { background: #070502; border-top: 1px solid rgba(212,168,67,0.08); padding: 64px 0 28px; }
+    .footer-in { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 52px; }
+    .f-brand-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: 4px; margin-bottom: 10px; }
+    .f-brand-tag { font-size: 0.78rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+    .f-socials { display: flex; gap: 10px; }
+    .f-soc {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid rgba(212,168,67,0.18);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
     }
+    .f-soc:hover { border-color: var(--gold); background: rgba(212,168,67,0.08); }
+    .f-soc svg { width: 15px; height: 15px; fill: var(--gold-dim); }
+    .f-col-title { font-size: 0.65rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
+    .f-col p, .f-col a { font-size: 0.8rem; color: var(--muted); line-height: 2.1; text-decoration: none; display: block; }
+    .f-col a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(212,168,67,0.06); padding-top: 22px; text-align: center; font-size: 0.68rem; color: rgba(138,112,80,0.6); letter-spacing: 1.5px; }
 
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #25D366;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 20px 44px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .cta-btn:hover { background: #1ebe5a; }
-
-    .cta-hint {
-      margin-top: 14px;
-      font-size: 0.78rem;
-      color: #5a4520;
-      letter-spacing: 0.5px;
-    }
-
-    footer {
-      background: #120d05;
-      color: #5a4520;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      border-top: 1px solid #2a1e08;
-    }
-
-    footer span { color: #d4a843; }
-
+    /* ── FLOATING WA ── */
     .wa-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 56px;
-      height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
-      cursor: pointer;
-      z-index: 100;
-      text-decoration: none;
+      position: fixed; bottom: 26px; right: 26px; z-index: 800;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.4);
+      text-decoration: none; transition: transform 0.2s;
     }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
 
-    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    /* ── POPUP MODAL ── */
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.78);
+      z-index: 1800; display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.35s;
+    }
+    .modal-bg.show { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--dark2); border: 1px solid rgba(212,168,67,0.22);
+      border-radius: 4px; padding: 48px 40px; width: 100%; max-width: 460px;
+      position: relative; transform: translateY(24px); transition: transform 0.35s;
+    }
+    .modal-bg.show .modal-box { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none; color: var(--muted);
+      font-size: 1.5rem; line-height: 1; cursor: pointer; transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      header, header.scrolled { padding: 16px 32px; }
+      .hero-inner { grid-template-columns: 1fr; padding: 120px 32px 60px; gap: 40px; }
+      .hero-socials { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-box { aspect-ratio: 16/9; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .process-grid { grid-template-columns: 1fr; gap: 0; }
+      .proc-item.no-border { border-bottom: 1px solid rgba(212,168,67,0.08); }
+      .proc-item:last-child { border-bottom: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .sec-in { padding: 0 32px; }
+    }
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .spec-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+    }
   </style>
 </head>
 <body>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="gold-line"></div>
-      <div class="tagline">Luxury Interior Design</div>
-      <h1 class="brand">VTR Projects &amp; Interiors</h1>
-      <p class="sub-brand">Crafting Spaces, Shaping Lives</p>
-      <div class="gold-line-bottom"></div>
-      <p class="description">
-        We design beautiful, functional homes and offices tailored to your lifestyle and vision.
-        Based in Hyderabad, serving residential and commercial clients across India.
-      </p>
-      <a class="cta-btn" href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20your%20interior%20design%20services." target="_blank">
-        <svg viewBox="0 0 32 32" width="18" height="18" fill="#fff"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.77L0 32l8.43-2.007A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.766-1.847l-.485-.288-5.003 1.193 1.216-4.872-.316-.5A13.248 13.248 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.715-1.292-.365-.132-.63-.199-.896.199-.265.397-1.028 1.292-1.26 1.557-.232.265-.464.298-.861.1-.397-.2-1.675-.617-3.191-1.97-1.18-1.052-1.976-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.179-.178.397-.464.596-.696.199-.232.265-.397.397-.662.132-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.696.1-1.061.497-.365.397-1.393 1.36-1.393 3.316s1.426 3.847 1.624 4.112c.199.265 2.806 4.284 6.797 6.009.95.41 1.692.655 2.27.838.953.303 1.82.26 2.506.158.764-.114 2.35-.96 2.682-1.888.332-.927.332-1.722.232-1.888-.099-.166-.365-.265-.762-.464z"/></svg>
-        Chat with Supriyaa
-      </a>
-      <p class="cta-hint">Opens WhatsApp — we'll get back to you shortly</p>
-    </div>
-  </section>
-
-  <footer>
-    <span>VTR Projects & Interiors</span> &nbsp;·&nbsp; Hyderabad &nbsp;·&nbsp; vtrinteriors.com
-  </footer>
-
-  <a class="wa-float" href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20your%20interior%20design%20services." target="_blank" title="Chat on WhatsApp">
-    <svg viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.77L0 32l8.43-2.007A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.766-1.847l-.485-.288-5.003 1.193 1.216-4.872-.316-.5A13.248 13.248 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.715-1.292-.365-.132-.63-.199-.896.199-.265.397-1.028 1.292-1.26 1.557-.232.265-.464.298-.861.1-.397-.2-1.675-.617-3.191-1.97-1.18-1.052-1.976-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.179-.178.397-.464.596-.696.199-.232.265-.397.397-.662.132-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.696.1-1.061.497-.365.397-1.393 1.36-1.393 3.316s1.426 3.847 1.624 4.112c.199.265 2.806 4.284 6.797 6.009.95.41 1.692.655 2.27.838.953.303 1.82.26 2.506.158.764-.114 2.35-.96 2.682-1.888.332-.927.332-1.722.232-1.888-.099-.166-.365-.265-.762-.464z"/></svg>
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
+<header id="mainHeader">
+  <a href="#home" class="logo">
+    <span class="logo-main">VTR</span>
+    <span class="logo-sub">Projects & Interiors</span>
   </a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#partners">Partners</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank" class="btn-quote">Get a Quote</a>
+  </nav>
+</header>
+
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero" id="home">
+
+  <!-- Floating WhatsApp icon -->
+  <div class="hero-socials">
+    <a class="soc-icon wa"
+       href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services."
+       target="_blank" title="Chat on WhatsApp">
+      <svg viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.77L0 32l8.43-2.007A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.766-1.847l-.485-.288-5.003 1.193 1.216-4.872-.316-.5A13.248 13.248 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.715-1.292-.365-.132-.63-.199-.896.199-.265.397-1.028 1.292-1.26 1.557-.232.265-.464.298-.861.1-.397-.2-1.675-.617-3.191-1.97-1.18-1.052-1.976-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.179-.178.397-.464.596-.696.199-.232.265-.397.397-.662.132-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.696.1-1.061.497-.365.397-1.393 1.36-1.393 3.316s1.426 3.847 1.624 4.112c.199.265 2.806 4.284 6.797 6.009.95.41 1.692.655 2.27.838.953.303 1.82.26 2.506.158.764-.114 2.35-.96 2.682-1.888.332-.927.332-1.722.232-1.888-.099-.166-.365-.265-.762-.464z"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-inner">
+
+    <!-- Left: Headline + stats -->
+    <div>
+      <div class="hero-eyebrow">Visual To Reality</div>
+      <h1 class="hero-headline"><span class="rot" id="rotText">Crafting spaces</span></h1>
+      <p class="hero-italic">with aesthetic appeal and ambience</p>
+      <div class="hero-rule"></div>
+      <p class="hero-desc">
+        Serving Jubilee Hills, Miyapur, Kukatpally, Anand Bagh, Tarnaka, Secunderabad, Koti and beyond —
+        residential and commercial interior design from concept to completion.
+      </p>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">100+</div>
+          <div class="stat-key">Projects Completed</div>
+        </div>
+        <div>
+          <div class="stat-val">2021</div>
+          <div class="stat-key">Established</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Inline contact form -->
+    <div class="hero-form-card">
+      <div class="hfc-title">Book a Consultation</div>
+      <div class="hfc-sub">We'll get back to you within 24 hours</div>
+      <!-- Replace YOUR_FORM_ID with actual Formspree ID after signup at formspree.io -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="fgrp">
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div class="fgrp">
+          <input type="tel" name="phone" placeholder="Phone Number" required />
+        </div>
+        <div class="fgrp">
+          <select name="area" required>
+            <option value="" disabled selected>Select Your Area</option>
+            <option>Jubilee Hills</option>
+            <option>Miyapur</option>
+            <option>Kukatpally</option>
+            <option>Anand Bagh</option>
+            <option>Tarnaka</option>
+            <option>Secunderabad</option>
+            <option>Koti</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fgrp">
+          <textarea name="message" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Enquiry</button>
+      </form>
+      <div class="form-wa-line">
+        Or <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank">chat on WhatsApp</a> directly
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section class="sec sec-alt" id="about">
+  <div class="sec-in">
+    <div class="sec-label">Our Story</div>
+    <h2 class="sec-title">Crafting spaces since 2021</h2>
+    <div class="sec-rule"></div>
+    <div class="about-grid">
+
+      <div class="about-img-box">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
+        <span>Founder Photo — Coming Soon</span>
+      </div>
+
+      <div class="about-text">
+        <p>VTR structured itself as a company after completion of 100+ projects by designer Supriyaa Sista alias Sunitha Priya with her experience in the field of design. A 1996 batch designer, during her journey with Architects and companies she designed offices, banks, showrooms and residences. Her collaboration with companies gave her insightful knowledge of market and sales.</p>
+        <p>The logo VTR was developed with the intention of providing qualitative work, from paper to reality — <em>Visual To Reality</em>. Bringing images to realistic forms, providing customers with visual contentment and bliss.</p>
+        <p>VTR has a team of designers, Engineers and Architects who, by sketching the dream of the customer, craft spaces that are more functional and have an aesthetic appeal and ambience.</p>
+        <div class="philosophy-block">
+          <div class="phi-label">Design Philosophy</div>
+          <p class="phi-text">Our design philosophy works on the principle of form following function. Design is not about making beautiful spaces — it is about manipulating the environment to improve human experience and behaviour. It bridges the gap between art and architecture; the space we inhabit deeply shapes how we think, feel and function.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section class="sec" id="services">
+  <div class="sec-in">
+    <div class="sec-label">What We Do</div>
+    <h2 class="sec-title">Our Range of Services</h2>
+    <div class="sec-rule"></div>
+    <p class="sec-desc">Designing spaces right from scratch to completion — flooring, false ceiling, electrical, carpentry, plumbing, painting, HVAC, waterproofing, civil works. Give us a home or office with a plain wall and we fill it with the design you dreamt.</p>
+
+    <div class="services-grid">
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <!-- Replace with: <img src="img/living-room.jpg" alt="Living Room Interiors" style="width:100%;height:100%;object-fit:cover;"> -->
+          <svg viewBox="0 0 24 24"><path d="M21 13v7h-2v-2H5v2H3v-7a2 2 0 012-2h.5L6 9V5c0-1.1.9-2 2-2h8a2 2 0 012 2v4l.5 2H19a2 2 0 012 2zM8 5v5h8V5H8zm11 8H5v3h14v-3z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Living Room Interiors</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9a4 4 0 00-4-4z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Bedroom Interiors (Master/Guest)</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Kids Bedroom Interiors</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M18 2.01L6 2c-1.1 0-2 .89-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.11-.9-1.99-2-1.99zM18 20H6v-9h12v9zm0-11H6V4h12v5zM8 5h2v3H8zm0 6h2v5H8z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Modular Kitchens</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Pooja Room Design</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .12.11.56.18 1H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-3c1.1 0 2 .9 2 2 0 .12-.11.56-.18 1h-3.64c-.07-.44-.18-.88-.18-1 0-1.1.9-2 2-2z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Wardrobe & Storage Solutions</div>
+          <div class="svc-tag">Residential</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7zm0 4h7v2H7z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">False Ceiling Design</div>
+          <div class="svc-tag">Residential & Commercial</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Wallpaper & Wall Treatments</div>
+          <div class="svc-tag">Residential & Commercial</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Custom Furniture Design</div>
+          <div class="svc-tag">Residential & Commercial</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Office / Commercial Interiors</div>
+          <div class="svc-tag">Commercial</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Turnkey Projects</div>
+          <div class="svc-tag">Residential & Commercial</div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-img">
+          <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+        </div>
+        <div class="svc-body">
+          <div class="svc-name">Renovations & Remodelling</div>
+          <div class="svc-tag">Residential & Commercial</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     PROCESS
+══════════════════════════════════ -->
+<section class="sec sec-alt" id="process">
+  <div class="sec-in">
+    <div class="sec-label">How We Work</div>
+    <h2 class="sec-title">The VTR Client Journey</h2>
+    <div class="sec-rule"></div>
+    <div class="process-grid">
+      <div class="proc-item"><div class="proc-num">01</div><div class="proc-title">Onboarding and consultation</div></div>
+      <div class="proc-item"><div class="proc-num">02</div><div class="proc-title">Site measurement and assessment</div></div>
+      <div class="proc-item"><div class="proc-num">03</div><div class="proc-title">Design agreement</div></div>
+      <div class="proc-item"><div class="proc-num">04</div><div class="proc-title">Concept design & space planning</div></div>
+      <div class="proc-item"><div class="proc-num">05</div><div class="proc-title">Client review on layout</div></div>
+      <div class="proc-item"><div class="proc-num">06</div><div class="proc-title">Design and development — 2D and 3D</div></div>
+      <div class="proc-item"><div class="proc-num">07</div><div class="proc-title">Technical drawings and documents</div></div>
+      <div class="proc-item"><div class="proc-num">08</div><div class="proc-title">Contract briefing</div></div>
+      <div class="proc-item no-border"><div class="proc-num">09</div><div class="proc-title">Site implementation — bringing life</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     SPECIALTIES
+══════════════════════════════════ -->
+<section class="sec" id="specialties">
+  <div class="sec-in">
+    <div class="sec-label">Our Expertise</div>
+    <h2 class="sec-title">Specialty Services</h2>
+    <div class="sec-rule"></div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </div>
+        <div class="spec-title">Small Space Maximization</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <div class="spec-title">Luxury Homes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     BRAND PARTNERS
+══════════════════════════════════ -->
+<section class="sec sec-alt" id="partners">
+  <div class="sec-in">
+    <div class="sec-label">Trusted Brands</div>
+    <h2 class="sec-title">Our Brand Partners</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="marquee-outer">
+    <!-- Duplicated list for seamless infinite loop -->
+    <div class="marquee-track">
+      <span class="p-name">Century</span><span class="p-sep">·</span>
+      <span class="p-name">Greenply</span><span class="p-sep">·</span>
+      <span class="p-name">Austin</span><span class="p-sep">·</span>
+      <span class="p-name">Siam Ply</span><span class="p-sep">·</span>
+      <span class="p-name">Gurjan Ply</span><span class="p-sep">·</span>
+      <span class="p-name">Hafele</span><span class="p-sep">·</span>
+      <span class="p-name">Hettich</span><span class="p-sep">·</span>
+      <span class="p-name">Gyproc</span><span class="p-sep">·</span>
+      <span class="p-name">Saint Gobain</span><span class="p-sep">·</span>
+      <span class="p-name">Ozone</span><span class="p-sep">·</span>
+      <span class="p-name">Ebco</span><span class="p-sep">·</span>
+      <span class="p-name">Aristo</span><span class="p-sep">·</span>
+      <span class="p-name">Century</span><span class="p-sep">·</span>
+      <span class="p-name">Greenply</span><span class="p-sep">·</span>
+      <span class="p-name">Austin</span><span class="p-sep">·</span>
+      <span class="p-name">Siam Ply</span><span class="p-sep">·</span>
+      <span class="p-name">Gurjan Ply</span><span class="p-sep">·</span>
+      <span class="p-name">Hafele</span><span class="p-sep">·</span>
+      <span class="p-name">Hettich</span><span class="p-sep">·</span>
+      <span class="p-name">Gyproc</span><span class="p-sep">·</span>
+      <span class="p-name">Saint Gobain</span><span class="p-sep">·</span>
+      <span class="p-name">Ozone</span><span class="p-sep">·</span>
+      <span class="p-name">Ebco</span><span class="p-sep">·</span>
+      <span class="p-name">Aristo</span><span class="p-sep">·</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-in">
+    <div class="footer-grid">
+
+      <div>
+        <div class="f-brand-name">VTR INTERIORS</div>
+        <p class="f-brand-tag">Visual To Reality — crafting spaces with aesthetic appeal and ambience. Serving Hyderabad since 2021.</p>
+        <div class="f-socials">
+          <!-- WhatsApp -->
+          <a class="f-soc" href="https://wa.me/919849095984" target="_blank" title="WhatsApp">
+            <svg viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.77L0 32l8.43-2.007A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.766-1.847l-.485-.288-5.003 1.193 1.216-4.872-.316-.5A13.248 13.248 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.715-1.292-.365-.132-.63-.199-.896.199-.265.397-1.028 1.292-1.26 1.557-.232.265-.464.298-.861.1-.397-.2-1.675-.617-3.191-1.97-1.18-1.052-1.976-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.179-.178.397-.464.596-.696.199-.232.265-.397.397-.662.132-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.696.1-1.061.497-.365.397-1.393 1.36-1.393 3.316s1.426 3.847 1.624 4.112c.199.265 2.806 4.284 6.797 6.009.95.41 1.692.655 2.27.838.953.303 1.82.26 2.506.158.764-.114 2.35-.96 2.682-1.888.332-.927.332-1.722.232-1.888-.099-.166-.365-.265-.762-.464z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a class="f-soc" href="https://www.instagram.com/Vtr_Interior" target="_blank" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a class="f-soc" href="https://www.facebook.com/Vtrprojects" target="_blank" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="f-col">
+        <div class="f-col-title">Contact</div>
+        <a href="mailto:vtrprojects5@gmail.com">vtrprojects5@gmail.com</a>
+        <a href="tel:+919390414692">+91 93904 14692</a>
+        <a href="tel:+919849095984">+91 98490 95984</a>
+        <p>Mon–Sat, 9:30 AM – 5:30 PM</p>
+      </div>
+
+      <div class="f-col">
+        <div class="f-col-title">Areas Served</div>
+        <p>Jubilee Hills</p>
+        <p>Miyapur</p>
+        <p>Kukatpally</p>
+        <p>Anand Bagh</p>
+        <p>Tarnaka</p>
+        <p>Secunderabad</p>
+        <p>Koti</p>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>VTR Projects & Interiors</span> &nbsp;·&nbsp; Hyderabad &nbsp;·&nbsp; vtrinteriors.com
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════
+     FLOATING WA BUTTON
+══════════════════════════════════ -->
+<a class="wa-float"
+   href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services."
+   target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.736 5.469 2.027 7.77L0 32l8.43-2.007A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.766-1.847l-.485-.288-5.003 1.193 1.216-4.872-.316-.5A13.248 13.248 0 012.667 16C2.667 8.637 8.637 2.667 16 2.667S29.333 8.637 29.333 16 23.363 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.715-1.292-.365-.132-.63-.199-.896.199-.265.397-1.028 1.292-1.26 1.557-.232.265-.464.298-.861.1-.397-.2-1.675-.617-3.191-1.97-1.18-1.052-1.976-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.179-.178.397-.464.596-.696.199-.232.265-.397.397-.662.132-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.763-.013c-.265 0-.696.1-1.061.497-.365.397-1.393 1.36-1.393 3.316s1.426 3.847 1.624 4.112c.199.265 2.806 4.284 6.797 6.009.95.41 1.692.655 2.27.838.953.303 1.82.26 2.506.158.764-.114 2.35-.96 2.682-1.888.332-.927.332-1.722.232-1.888-.099-.166-.365-.265-.762-.464z"/></svg>
+</a>
+
+
+<!-- ══════════════════════════════════
+     POPUP MODAL
+══════════════════════════════════ -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="hfc-title" style="font-size:1.5rem;margin-bottom:6px;">Let's Design Your Space</div>
+    <div class="hfc-sub" style="margin-bottom:28px;">Drop your details and we'll reach out shortly.</div>
+    <!-- Replace YOUR_FORM_ID with actual Formspree ID -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="fgrp">
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="fgrp">
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+      </div>
+      <div class="fgrp">
+        <select name="area" required>
+          <option value="" disabled selected>Select Your Area</option>
+          <option>Jubilee Hills</option>
+          <option>Miyapur</option>
+          <option>Kukatpally</option>
+          <option>Anand Bagh</option>
+          <option>Tarnaka</option>
+          <option>Secunderabad</option>
+          <option>Koti</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fgrp">
+        <textarea name="message" placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Enquiry</button>
+    </form>
+    <div class="form-wa-line" style="margin-top:13px;">
+      Or <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank">chat on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Sticky header
+  const hdr = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Rotating hero text — exact phrases from client data only
+  const phrases = ['Crafting spaces', 'Visual To Reality'];
+  let idx = 0;
+  const rotEl = document.getElementById('rotText');
+  setInterval(() => {
+    rotEl.classList.add('fade');
+    setTimeout(() => {
+      idx = (idx + 1) % phrases.length;
+      rotEl.textContent = phrases[idx];
+      rotEl.classList.remove('fade');
+    }, 500);
+  }, 3500);
+
+  // Popup modal — triggers at 50% scroll, once per browser session
+  const modalBg = document.getElementById('modalBg');
+  const modalClose = document.getElementById('modalClose');
+  let shown = sessionStorage.getItem('popupShown');
+
+  window.addEventListener('scroll', () => {
+    if (shown) return;
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (pct >= 0.5) {
+      modalBg.classList.add('show');
+      sessionStorage.setItem('popupShown', '1');
+      shown = true;
+    }
+  });
+
+  modalClose.addEventListener('click', () => modalBg.classList.remove('show'));
+  modalBg.addEventListener('click', (e) => { if (e.target === modalBg) modalBg.classList.remove('show'); });
+</script>
 
 </body>
 </html>
