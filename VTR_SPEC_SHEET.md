@@ -88,13 +88,14 @@
   - Small Space Maximization
   - Luxury Homes
 
-### 7. Brand Partners (Marquee)
+### 7. Trusted Brands (Marquee)
 - Source: Excel field 6.2
+- Section label: "What We Build With" · h2: "Trusted Brands"
 - Auto-scrolling right-to-left, pauses on hover
-- Displayed as **logo placeholder boxes** (branded pill cards with name) — **replace with `<img>` tags once logo files are collected from each brand**
-- Add logo files to `logos/` folder, then replace: `<div class="logo-box">BrandName</div>` → `<div class="logo-box"><img src="logos/brandname.png" alt="BrandName"></div>`
+- **Logos wired up** — 11 of 12 brands display `<img>` from `logos/` folder; Gurjan Ply still shows as text (logo file not yet found)
 - 12 brands (exact from Excel):
   Century · Greenply · Austin · Siam Ply · Gurjan Ply · Hafele · Hettich · Gyproc · Saint Gobain · Ozone · Ebco · Aristo
+- **Pending:** Gurjan Ply logo — add as `logos/Gurjan Ply.png` and replace the text box
 
 ### 8. Footer
 - Source: Excel Section 7
