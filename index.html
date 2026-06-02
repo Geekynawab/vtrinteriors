@@ -338,8 +338,7 @@
     <div class="hero-form-card">
       <div class="hfc-title">Book a Consultation</div>
       <div class="hfc-sub">We'll get back to you within 24 hours</div>
-      <!-- Replace YOUR_FORM_ID with actual Formspree ID after signup at formspree.io -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="heroForm" onsubmit="sendToWA(event, this)">
         <div class="fgrp">
           <input type="text" name="name" placeholder="Your Name" required />
         </div>
@@ -362,11 +361,8 @@
         <div class="fgrp">
           <textarea name="message" placeholder="Tell us about your project..."></textarea>
         </div>
-        <button type="submit" class="btn-submit">Send Enquiry</button>
+        <button type="submit" class="btn-submit">Send Enquiry via WhatsApp</button>
       </form>
-      <div class="form-wa-line">
-        Or <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank">chat on WhatsApp</a> directly
-      </div>
     </div>
 
   </div>
@@ -702,8 +698,7 @@
     <button class="modal-close" id="modalClose">&times;</button>
     <div class="hfc-title" style="font-size:1.5rem;margin-bottom:6px;">Let's Design Your Space</div>
     <div class="hfc-sub" style="margin-bottom:28px;">Drop your details and we'll reach out shortly.</div>
-    <!-- Replace YOUR_FORM_ID with actual Formspree ID -->
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form id="popupForm" onsubmit="sendToWA(event, this)">
       <div class="fgrp">
         <input type="text" name="name" placeholder="Your Name" required />
       </div>
@@ -726,16 +721,24 @@
       <div class="fgrp">
         <textarea name="message" placeholder="Tell us about your project..."></textarea>
       </div>
-      <button type="submit" class="btn-submit">Send Enquiry</button>
+      <button type="submit" class="btn-submit">Send Enquiry via WhatsApp</button>
     </form>
-    <div class="form-wa-line" style="margin-top:13px;">
-      Or <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank">chat on WhatsApp</a>
-    </div>
   </div>
 </div>
 
 
 <script>
+  // Form → WhatsApp: collects fields and opens a pre-filled WhatsApp message to Supriyaa
+  function sendToWA(e, form) {
+    e.preventDefault();
+    const name    = form.querySelector('[name="name"]').value.trim();
+    const phone   = form.querySelector('[name="phone"]').value.trim();
+    const area    = form.querySelector('[name="area"]').value;
+    const message = form.querySelector('[name="message"]').value.trim();
+    const text = `Hi Supriyaa, I'm interested in interior design services.\n\nName: ${name}\nPhone: ${phone}\nArea: ${area}${message ? '\nProject: ' + message : ''}`;
+    window.open('https://wa.me/919849095984?text=' + encodeURIComponent(text), '_blank');
+  }
+
   // Sticky header
   const hdr = document.getElementById('mainHeader');
   window.addEventListener('scroll', () => {
