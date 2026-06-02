@@ -118,7 +118,7 @@
 
 ### Popup Modal Form
 - Same fields and same WhatsApp submission as hero form
-- Triggers: when user scrolls to 50% of page depth
+- Triggers: when user scrolls past 70% of viewport height (roughly as the hero section ends)
 - Frequency: once per browser session (sessionStorage flag)
 - Dismiss: click X or click outside modal
 

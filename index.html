@@ -765,8 +765,7 @@
 
   window.addEventListener('scroll', () => {
     if (shown) return;
-    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (pct >= 0.5) {
+    if (window.scrollY > window.innerHeight * 0.7) {
       modalBg.classList.add('show');
       sessionStorage.setItem('popupShown', '1');
       shown = true;
