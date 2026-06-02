@@ -66,9 +66,10 @@
   11. Turnkey Projects
   12. Renovations & Remodelling
 
-### 5. Process (9 Steps)
+### 5. Process (9 Steps — Horizontal Timeline)
 - Source: Excel field under Section 4 header (exact wording)
-- Layout: 2-column grid (ARK Architects-style)
+- Layout: Sticky horizontal scroll timeline (desktop) / vertical list (mobile ≤768px)
+- Behaviour: Section pins to viewport while user scrolls vertically; cards translate horizontally driven by scroll position; each card activates (gold number + full brightness title + glowing dot) as it comes into view; gold progress bar + "Step X of 9" counter at bottom
 - Steps (verbatim):
   1. Onboarding and consultation
   2. Site measurement and assessment

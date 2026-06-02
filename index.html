@@ -167,22 +167,77 @@
     .svc-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--cream); line-height: 1.3; margin-bottom: 6px; }
     .svc-tag { font-size: 0.62rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
 
-    /* ── PROCESS ── */
-    .process-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0 60px; margin-top: 56px;
+    /* ── PROCESS (Horizontal Timeline) ── */
+    .process-sticky-wrap { position: relative; } /* height set by JS */
+    .process-sticky {
+      position: sticky; top: 0; height: 100vh; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--dark3);
     }
-    .proc-item {
-      display: flex; gap: 22px; align-items: flex-start;
-      padding: 26px 0; border-bottom: 1px solid rgba(212,168,67,0.08);
+    .process-head { padding: 0 60px; margin-bottom: 44px; flex-shrink: 0; }
+    .process-overflow { overflow: hidden; flex-shrink: 0; }
+    .process-cards {
+      display: flex; align-items: flex-start;
+      padding: 0 60px; will-change: transform;
     }
-    .proc-item.no-border { border-bottom: none; }
-    .proc-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; color: rgba(212,168,67,0.13);
-      font-weight: 700; line-height: 1; flex-shrink: 0; min-width: 44px; padding-top: 2px;
+    .pcard { min-width: 280px; flex-shrink: 0; display: flex; flex-direction: column; }
+    .pcard-inner { padding: 0 20px 28px; }
+    .pcard-num {
+      font-family: 'Playfair Display', serif; font-size: 3rem;
+      color: rgba(212,168,67,0.1); font-weight: 700; line-height: 1;
+      margin-bottom: 14px; transition: color 0.5s;
     }
-    .proc-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--cream); line-height: 1.4; padding-top: 4px; }
+    .pcard.active .pcard-num { color: rgba(212,168,67,0.45); }
+    .pcard-title {
+      font-family: 'Playfair Display', serif; font-size: 0.95rem;
+      color: rgba(245,232,200,0.25); line-height: 1.55;
+      max-width: 210px; transition: color 0.5s;
+    }
+    .pcard.active .pcard-title { color: var(--cream); }
+    .pcard-connector {
+      height: 48px; display: flex; align-items: center;
+      padding: 0 20px; position: relative;
+    }
+    .pcard-connector::before {
+      content: ''; position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: rgba(212,168,67,0.15); transform: translateY(-50%);
+    }
+    .pcard:first-child .pcard-connector::before { left: 24px; }
+    .pcard:last-child .pcard-connector::before { right: calc(100% - 24px); }
+    .pcard-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(212,168,67,0.15); border: 1px solid rgba(212,168,67,0.3);
+      position: relative; z-index: 1;
+      transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+    }
+    .pcard.active .pcard-dot {
+      background: var(--gold); border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(212,168,67,0.45);
+    }
+    /* Progress bar */
+    .proc-prog-wrap { padding: 28px 60px 0; flex-shrink: 0; }
+    .proc-prog-track {
+      height: 1px; background: rgba(212,168,67,0.1); position: relative; margin-bottom: 10px;
+    }
+    .proc-prog-fill {
+      position: absolute; top: 0; left: 0; height: 100%; width: 0%;
+      background: var(--gold); transition: width 0.12s ease-out;
+    }
+    .proc-prog-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+    /* Mobile fallback */
+    .process-mobile { display: none; }
+    @media (max-width: 768px) {
+      .process-sticky-wrap { height: auto !important; }
+      .process-sticky { position: static; height: auto; padding: 60px 0 40px; }
+      .process-overflow { overflow: visible; }
+      .process-cards { display: none; }
+      .proc-prog-wrap { display: none; }
+      .process-mobile { display: block; padding: 0 32px; margin-top: 40px; }
+      .pmob-item { display: flex; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgba(212,168,67,0.08); }
+      .pmob-item:last-child { border-bottom: none; }
+      .pmob-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: rgba(212,168,67,0.2); font-weight: 700; min-width: 36px; }
+      .pmob-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--cream); line-height: 1.45; padding-top: 4px; }
+    }
 
     /* ── SPECIALTIES ── */
     .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
@@ -538,23 +593,82 @@
 
 
 <!-- ══════════════════════════════════
-     PROCESS
+     PROCESS (Horizontal Timeline)
 ══════════════════════════════════ -->
-<section class="sec sec-alt" id="process">
-  <div class="sec-in">
-    <div class="sec-label">How We Work</div>
-    <h2 class="sec-title">The VTR Client Journey</h2>
-    <div class="sec-rule"></div>
-    <div class="process-grid">
-      <div class="proc-item"><div class="proc-num">01</div><div class="proc-title">Onboarding and consultation</div></div>
-      <div class="proc-item"><div class="proc-num">02</div><div class="proc-title">Site measurement and assessment</div></div>
-      <div class="proc-item"><div class="proc-num">03</div><div class="proc-title">Design agreement</div></div>
-      <div class="proc-item"><div class="proc-num">04</div><div class="proc-title">Concept design & space planning</div></div>
-      <div class="proc-item"><div class="proc-num">05</div><div class="proc-title">Client review on layout</div></div>
-      <div class="proc-item"><div class="proc-num">06</div><div class="proc-title">Design and development — 2D and 3D</div></div>
-      <div class="proc-item"><div class="proc-num">07</div><div class="proc-title">Technical drawings and documents</div></div>
-      <div class="proc-item"><div class="proc-num">08</div><div class="proc-title">Contract briefing</div></div>
-      <div class="proc-item no-border"><div class="proc-num">09</div><div class="proc-title">Site implementation — bringing life</div></div>
+<section id="process">
+  <div class="process-sticky-wrap" id="processStickyWrap">
+    <div class="process-sticky" id="processSticky">
+
+      <!-- Header -->
+      <div class="process-head">
+        <div class="sec-label">How We Work</div>
+        <h2 class="sec-title">The VTR Client Journey</h2>
+        <div class="sec-rule"></div>
+      </div>
+
+      <!-- Horizontal scrolling cards (desktop) -->
+      <div class="process-overflow">
+        <div class="process-cards" id="processCards">
+
+          <div class="pcard active">
+            <div class="pcard-inner"><div class="pcard-num">01</div><div class="pcard-title">Onboarding and consultation</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">02</div><div class="pcard-title">Site measurement and assessment</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">03</div><div class="pcard-title">Design agreement</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">04</div><div class="pcard-title">Concept design &amp; space planning</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">05</div><div class="pcard-title">Client review on layout</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">06</div><div class="pcard-title">Design and development — 2D and 3D</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">07</div><div class="pcard-title">Technical drawings and documents</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">08</div><div class="pcard-title">Contract briefing</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard-inner"><div class="pcard-num">09</div><div class="pcard-title">Site implementation — bringing life</div></div>
+            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Progress indicator -->
+      <div class="proc-prog-wrap">
+        <div class="proc-prog-track"><div class="proc-prog-fill" id="procProgFill"></div></div>
+        <div class="proc-prog-label" id="procProgLabel">Step 1 of 9</div>
+      </div>
+
+      <!-- Mobile fallback (plain vertical list) -->
+      <div class="process-mobile">
+        <div class="pmob-item"><div class="pmob-num">01</div><div class="pmob-title">Onboarding and consultation</div></div>
+        <div class="pmob-item"><div class="pmob-num">02</div><div class="pmob-title">Site measurement and assessment</div></div>
+        <div class="pmob-item"><div class="pmob-num">03</div><div class="pmob-title">Design agreement</div></div>
+        <div class="pmob-item"><div class="pmob-num">04</div><div class="pmob-title">Concept design &amp; space planning</div></div>
+        <div class="pmob-item"><div class="pmob-num">05</div><div class="pmob-title">Client review on layout</div></div>
+        <div class="pmob-item"><div class="pmob-num">06</div><div class="pmob-title">Design and development — 2D and 3D</div></div>
+        <div class="pmob-item"><div class="pmob-num">07</div><div class="pmob-title">Technical drawings and documents</div></div>
+        <div class="pmob-item"><div class="pmob-num">08</div><div class="pmob-title">Contract briefing</div></div>
+        <div class="pmob-item"><div class="pmob-num">09</div><div class="pmob-title">Site implementation — bringing life</div></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -741,8 +855,40 @@
 
   // Sticky header
   const hdr = document.getElementById('mainHeader');
+
+  // Process horizontal timeline
+  const processStickyWrap = document.getElementById('processStickyWrap');
+  const processCards      = document.getElementById('processCards');
+  const procProgFill      = document.getElementById('procProgFill');
+  const procProgLabel     = document.getElementById('procProgLabel');
+  const pcards            = document.querySelectorAll('.pcard');
+
+  function initProcess() {
+    if (!processCards || window.innerWidth <= 768) return;
+    const scrollNeeded = processCards.scrollWidth - window.innerWidth + 120;
+    processStickyWrap.style.height = (scrollNeeded + window.innerHeight) + 'px';
+  }
+  initProcess();
+  window.addEventListener('resize', initProcess);
+
+  function updateProcess() {
+    if (!processCards || window.innerWidth <= 768) return;
+    const wrapTop = processStickyWrap.offsetTop;
+    const wrapH   = processStickyWrap.offsetHeight;
+    const progress = Math.max(0, Math.min(1,
+      (window.scrollY - wrapTop) / (wrapH - window.innerHeight)
+    ));
+    const maxX = processCards.scrollWidth - window.innerWidth + 120;
+    processCards.style.transform = `translateX(${-progress * maxX}px)`;
+    procProgFill.style.width = (progress * 100) + '%';
+    const activeIdx = Math.min(pcards.length - 1, Math.floor(progress * pcards.length));
+    pcards.forEach((c, i) => c.classList.toggle('active', i <= activeIdx));
+    procProgLabel.textContent = `Step ${activeIdx + 1} of ${pcards.length}`;
+  }
+
   window.addEventListener('scroll', () => {
     hdr.classList.toggle('scrolled', window.scrollY > 80);
+    updateProcess();
   });
 
   // Rotating hero text — exact phrases from client data only
