@@ -3,7 +3,7 @@
 **File:** `index.html`
 **Hosted:** GitHub Pages — `Geekynawab/vtrinteriors`
 **Domain:** `vtrinteriors.com` (GoDaddy DNS — CNAME pending)
-**Last updated:** 2026-06-02
+**Last updated:** 2026-06-03
 
 ---
 
@@ -25,7 +25,7 @@
 ### 1. Header (Sticky Nav)
 - Fixed position, transparent on load, dark on scroll
 - Logo: "VTR" (gold, Playfair Display) + "Projects & Interiors" sub-label
-- Nav links: About · Services · Process · Partners · Contact · Get a Quote
+- Nav links: About · Services · Process · Brands · Contact · Get a Quote
 - "Get a Quote" links to WhatsApp
 - **Mobile (≤640px):** Nav hidden, hamburger button shown — opens full-screen drawer with all nav links + WhatsApp CTA
 
@@ -70,7 +70,9 @@
 - Source: Excel field under Section 4 header (exact wording)
 - Layout: Sticky horizontal scroll timeline (desktop) / vertical list (mobile ≤768px)
 - Alternating: odd steps (1,3,5,7,9) show content **above** the center line; even steps (2,4,6,8) show content **below** the center line — connected by a vertical stem to a dot on the center line
-- Behaviour: Section pins to viewport while user scrolls vertically; cards translate horizontally driven by scroll position; each card activates (gold number + full brightness title + glowing dot + gold stem) as it comes into view; gold progress bar + "Step X of 9" counter at bottom
+- Behaviour: **Scroll-lock** — when section hits viewport top, vertical scroll is frozen (`body overflow:hidden`) and wheel events are intercepted to drive the horizontal translation directly. Page unlocks only when Step 9 is reached (scrolling down) or Step 1 is rewound (scrolling up), then scroll jumps past/before the section. Gold progress bar + "Step X of 9" counter at bottom
+- Font sizes: step number `3rem` (Playfair), step title `1.05rem` (Playfair)
+- **Bug fix (2026-06-03):** Removed `overflow-x: hidden` from `html` selector — this silently breaks `position: sticky` in all browsers. Overflow control now lives only on `body` and individual elements
 - Steps (verbatim):
   1. Onboarding and consultation
   2. Site measurement and assessment
@@ -92,7 +94,8 @@
 - Source: Excel field 6.2
 - Section label: "What We Build With" · h2: "Trusted Brands"
 - Auto-scrolling right-to-left, pauses on hover
-- **Logos wired up** — 11 of 12 brands display `<img>` from `logos/` folder; Gurjan Ply still shows as text (logo file not yet found)
+- **Logos wired up** — 11 of 12 brands display `<img>` from `logos/` folder; Gurjan Ply still shows as text (logo not found)
+- Logo boxes: white background (`rgba(255,255,255,0.93)`), 80×160px, `object-fit: cover` to fill box edge-to-edge, `overflow: hidden` on box
 - 12 brands (exact from Excel):
   Century · Greenply · Austin · Siam Ply · Gurjan Ply · Hafele · Hettich · Gyproc · Saint Gobain · Ozone · Ebco · Aristo
 - **Pending:** Gurjan Ply logo — add as `logos/Gurjan Ply.png` and replace the text box
