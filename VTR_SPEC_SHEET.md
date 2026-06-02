@@ -31,11 +31,10 @@
 ### 2. Hero
 - Full-viewport height
 - Background: gradient placeholder — **replace with `hero.jpg`** (add file to repo root)
-- Rotating headline (JS fade, 3.5s interval):
-  - "Crafting spaces" *(exact client tagline)*
-  - "Visual To Reality" *(from client USP)*
-- Italic subheading: "with aesthetic appeal and ambience" *(from client data)*
-- Gold divider rule
+- Visual enhancements: subtle dot grid overlay (CSS), large dim "VTR" watermark behind headline, entrance animations (fadeUp) on all hero elements
+- Static headline: **"Visual To Reality"** *(exact client USP — no longer rotating)*
+- Italic subheading: **"Crafting spaces"** *(exact client tagline)*
+- Gold divider rule (animated on load)
 - Description: areas served + project type (from Excel 1.5 and 1.6)
 - Stats: **100+** Projects Completed · **2021** Established (from Excel 1.4 and 1.3)
 - **Inline contact form** (right column) → WhatsApp on submit
@@ -66,10 +65,11 @@
   11. Turnkey Projects
   12. Renovations & Remodelling
 
-### 5. Process (9 Steps — Horizontal Timeline)
+### 5. Process (9 Steps — Alternating Horizontal Timeline)
 - Source: Excel field under Section 4 header (exact wording)
 - Layout: Sticky horizontal scroll timeline (desktop) / vertical list (mobile ≤768px)
-- Behaviour: Section pins to viewport while user scrolls vertically; cards translate horizontally driven by scroll position; each card activates (gold number + full brightness title + glowing dot) as it comes into view; gold progress bar + "Step X of 9" counter at bottom
+- Alternating: odd steps (1,3,5,7,9) show content **above** the center line; even steps (2,4,6,8) show content **below** the center line — connected by a vertical stem to a dot on the center line
+- Behaviour: Section pins to viewport while user scrolls vertically; cards translate horizontally driven by scroll position; each card activates (gold number + full brightness title + glowing dot + gold stem) as it comes into view; gold progress bar + "Step X of 9" counter at bottom
 - Steps (verbatim):
   1. Onboarding and consultation
   2. Site measurement and assessment
@@ -89,7 +89,9 @@
 
 ### 7. Brand Partners (Marquee)
 - Source: Excel field 6.2
-- Auto-scrolling, pauses on hover
+- Auto-scrolling right-to-left, pauses on hover
+- Displayed as **logo placeholder boxes** (branded pill cards with name) — **replace with `<img>` tags once logo files are collected from each brand**
+- Add logo files to `logos/` folder, then replace: `<div class="logo-box">BrandName</div>` → `<div class="logo-box"><img src="logos/brandname.png" alt="BrandName"></div>`
 - 12 brands (exact from Excel):
   Century · Greenply · Austin · Siam Ply · Gurjan Ply · Hafele · Hettich · Gyproc · Saint Gobain · Ozone · Ebco · Aristo
 

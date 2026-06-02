@@ -167,63 +167,78 @@
     .svc-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--cream); line-height: 1.3; margin-bottom: 6px; }
     .svc-tag { font-size: 0.62rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
 
-    /* ── PROCESS (Horizontal Timeline) ── */
-    .process-sticky-wrap { position: relative; } /* height set by JS */
+    /* ── PROCESS (Alternating Timeline) ── */
+    .process-sticky-wrap { position: relative; }
     .process-sticky {
       position: sticky; top: 0; height: 100vh; overflow: hidden;
       display: flex; flex-direction: column; justify-content: center;
       background: var(--dark3);
     }
-    .process-head { padding: 0 60px; margin-bottom: 44px; flex-shrink: 0; }
-    .process-overflow { overflow: hidden; flex-shrink: 0; }
+    .process-head { padding: 0 60px; margin-bottom: 36px; flex-shrink: 0; }
+    .process-overflow { overflow: hidden; flex-shrink: 0; position: relative; }
+
+    /* Fixed center line — sits at 50% of the 360px card area = 180px */
+    .process-center-line {
+      position: absolute; top: 180px; left: 0; right: 0;
+      height: 1px; background: rgba(212,168,67,0.12);
+      pointer-events: none; z-index: 3;
+    }
+
     .process-cards {
-      display: flex; align-items: flex-start;
+      display: flex; height: 360px;
       padding: 0 60px; will-change: transform;
     }
-    .pcard { min-width: 280px; flex-shrink: 0; display: flex; flex-direction: column; }
-    .pcard-inner { padding: 0 20px 28px; }
+    .pcard { min-width: 260px; flex-shrink: 0; height: 360px; position: relative; }
+
+    /* Content block — absolute, positioned top or bottom */
+    .pcard-inner { position: absolute; left: 0; right: 0; padding: 0 20px; text-align: center; }
+    .pcard:nth-child(odd)  .pcard-inner { top: 16px; }
+    .pcard:nth-child(even) .pcard-inner { bottom: 16px; }
+
     .pcard-num {
-      font-family: 'Playfair Display', serif; font-size: 3rem;
+      font-family: 'Playfair Display', serif; font-size: 2.4rem;
       color: rgba(212,168,67,0.1); font-weight: 700; line-height: 1;
-      margin-bottom: 14px; transition: color 0.5s;
+      margin-bottom: 10px; transition: color 0.5s;
     }
-    .pcard.active .pcard-num { color: rgba(212,168,67,0.45); }
+    .pcard.active .pcard-num { color: rgba(212,168,67,0.5); }
     .pcard-title {
-      font-family: 'Playfair Display', serif; font-size: 0.95rem;
-      color: rgba(245,232,200,0.25); line-height: 1.55;
-      max-width: 210px; transition: color 0.5s;
+      font-family: 'Playfair Display', serif; font-size: 0.88rem;
+      color: rgba(245,232,200,0.2); line-height: 1.55;
+      transition: color 0.5s;
     }
     .pcard.active .pcard-title { color: var(--cream); }
-    .pcard-connector {
-      height: 48px; display: flex; align-items: center;
-      padding: 0 20px; position: relative;
+
+    /* Vertical stem connecting content to center dot */
+    .pcard-stem {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      width: 1px; background: rgba(212,168,67,0.18); transition: background 0.4s;
     }
-    .pcard-connector::before {
-      content: ''; position: absolute; top: 50%; left: 0; right: 0;
-      height: 1px; background: rgba(212,168,67,0.15); transform: translateY(-50%);
-    }
-    .pcard:first-child .pcard-connector::before { left: 24px; }
-    .pcard:last-child .pcard-connector::before { right: calc(100% - 24px); }
+    .pcard:nth-child(odd)  .pcard-stem { top: 110px; height: 65px; }
+    .pcard:nth-child(even) .pcard-stem { top: 185px; height: 65px; }
+    .pcard.active .pcard-stem { background: rgba(212,168,67,0.4); }
+
+    /* Dot at exact center (180px) */
     .pcard-dot {
-      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px; height: 10px; border-radius: 50%; z-index: 4;
       background: rgba(212,168,67,0.15); border: 1px solid rgba(212,168,67,0.3);
-      position: relative; z-index: 1;
       transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
     }
     .pcard.active .pcard-dot {
       background: var(--gold); border-color: var(--gold);
-      box-shadow: 0 0 12px rgba(212,168,67,0.45);
+      box-shadow: 0 0 14px rgba(212,168,67,0.5);
     }
+
     /* Progress bar */
-    .proc-prog-wrap { padding: 28px 60px 0; flex-shrink: 0; }
-    .proc-prog-track {
-      height: 1px; background: rgba(212,168,67,0.1); position: relative; margin-bottom: 10px;
-    }
+    .proc-prog-wrap { padding: 24px 60px 0; flex-shrink: 0; }
+    .proc-prog-track { height: 1px; background: rgba(212,168,67,0.1); position: relative; margin-bottom: 10px; }
     .proc-prog-fill {
       position: absolute; top: 0; left: 0; height: 100%; width: 0%;
       background: var(--gold); transition: width 0.12s ease-out;
     }
     .proc-prog-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
     /* Mobile fallback */
     .process-mobile { display: none; }
     @media (max-width: 768px) {
@@ -248,13 +263,52 @@
     .spec-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--cream); }
 
     /* ── PARTNERS ── */
-    .marquee-outer { margin-top: 48px; overflow: hidden; padding: 16px 0; }
-    .marquee-track { display: flex; gap: 56px; width: max-content; animation: scrolll 30s linear infinite; }
+    .marquee-outer { margin-top: 48px; overflow: hidden; padding: 20px 0; }
+    .marquee-track { display: flex; gap: 20px; width: max-content; animation: scrolll 32s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
-    .p-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; transition: color 0.2s; }
-    .p-name:hover { color: var(--gold); }
-    .p-sep { color: rgba(212,168,67,0.25); }
+    /* Logo placeholder boxes — replace img src with actual logo files when available */
+    .logo-box {
+      height: 60px; min-width: 120px; padding: 0 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,168,67,0.14);
+      border-radius: 3px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600;
+      color: rgba(138,112,80,0.65); letter-spacing: 2.5px; text-transform: uppercase;
+      white-space: nowrap; transition: border-color 0.2s, color 0.2s;
+    }
+    .logo-box:hover { border-color: rgba(212,168,67,0.38); color: var(--gold-dim); }
+    .logo-box img { max-height: 32px; max-width: 90px; object-fit: contain; filter: brightness(0) invert(0.5); }
     @keyframes scrolll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HERO ENTRANCE ANIMATION ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-headline  { animation: fadeUp 0.9s 0.15s both; }
+    .hero-italic    { animation: fadeUp 0.9s 0.3s both; }
+    .hero-rule      { animation: fadeUp 0.9s 0.42s both; }
+    .hero-desc      { animation: fadeUp 0.9s 0.54s both; }
+    .hero-stats     { animation: fadeUp 0.9s 0.68s both; }
+    .hero-form-card { animation: fadeUp 0.9s 0.25s both; }
+
+    /* Large watermark text behind headline */
+    .hero-watermark {
+      position: absolute; top: 50%; left: -20px;
+      transform: translateY(-52%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(160px, 22vw, 340px);
+      font-weight: 700; color: rgba(212,168,67,0.04);
+      line-height: 1; pointer-events: none; user-select: none;
+      z-index: 1; letter-spacing: -0.02em;
+    }
+
+    /* Subtle dot grid overlay */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(212,168,67,0.045) 1px, transparent 1px);
+      background-size: 38px 38px;
+      z-index: 1; pointer-events: none;
+    }
 
     /* ── FOOTER ── */
     footer { background: #070502; border-top: 1px solid rgba(212,168,67,0.08); padding: 64px 0 28px; }
@@ -365,13 +419,14 @@
     </a>
   </div>
 
+  <div class="hero-watermark" aria-hidden="true">VTR</div>
+
   <div class="hero-inner">
 
     <!-- Left: Headline + stats -->
     <div>
-      <div class="hero-eyebrow">Visual To Reality</div>
-      <h1 class="hero-headline"><span class="rot" id="rotText">Crafting spaces</span></h1>
-      <p class="hero-italic">with aesthetic appeal and ambience</p>
+      <h1 class="hero-headline">Visual To Reality</h1>
+      <p class="hero-italic">Crafting spaces</p>
       <div class="hero-rule"></div>
       <p class="hero-desc">
         Serving Jubilee Hills, Miyapur, Kukatpally, Anand Bagh, Tarnaka, Secunderabad, Koti and beyond —
@@ -606,45 +661,46 @@
         <div class="sec-rule"></div>
       </div>
 
-      <!-- Horizontal scrolling cards (desktop) -->
+      <!-- Horizontal alternating timeline (desktop) -->
       <div class="process-overflow">
+        <div class="process-center-line"></div>
         <div class="process-cards" id="processCards">
 
-          <div class="pcard active">
+          <div class="pcard active"><!-- ODD: content top -->
             <div class="pcard-inner"><div class="pcard-num">01</div><div class="pcard-title">Onboarding and consultation</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- EVEN: content bottom -->
             <div class="pcard-inner"><div class="pcard-num">02</div><div class="pcard-title">Site measurement and assessment</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- ODD -->
             <div class="pcard-inner"><div class="pcard-num">03</div><div class="pcard-title">Design agreement</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- EVEN -->
             <div class="pcard-inner"><div class="pcard-num">04</div><div class="pcard-title">Concept design &amp; space planning</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- ODD -->
             <div class="pcard-inner"><div class="pcard-num">05</div><div class="pcard-title">Client review on layout</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- EVEN -->
             <div class="pcard-inner"><div class="pcard-num">06</div><div class="pcard-title">Design and development — 2D and 3D</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- ODD -->
             <div class="pcard-inner"><div class="pcard-num">07</div><div class="pcard-title">Technical drawings and documents</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- EVEN -->
             <div class="pcard-inner"><div class="pcard-num">08</div><div class="pcard-title">Contract briefing</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
-          <div class="pcard">
+          <div class="pcard"><!-- ODD -->
             <div class="pcard-inner"><div class="pcard-num">09</div><div class="pcard-title">Site implementation — bringing life</div></div>
-            <div class="pcard-connector"><div class="pcard-dot"></div></div>
+            <div class="pcard-stem"></div><div class="pcard-dot"></div>
           </div>
 
         </div>
@@ -710,32 +766,33 @@
     <div class="sec-rule"></div>
   </div>
   <div class="marquee-outer">
-    <!-- Duplicated list for seamless infinite loop -->
+    <!-- Logo boxes — replace text with <img src="logos/brand.png"> when logo files are available -->
+    <!-- Duplicated for seamless infinite loop -->
     <div class="marquee-track">
-      <span class="p-name">Century</span><span class="p-sep">·</span>
-      <span class="p-name">Greenply</span><span class="p-sep">·</span>
-      <span class="p-name">Austin</span><span class="p-sep">·</span>
-      <span class="p-name">Siam Ply</span><span class="p-sep">·</span>
-      <span class="p-name">Gurjan Ply</span><span class="p-sep">·</span>
-      <span class="p-name">Hafele</span><span class="p-sep">·</span>
-      <span class="p-name">Hettich</span><span class="p-sep">·</span>
-      <span class="p-name">Gyproc</span><span class="p-sep">·</span>
-      <span class="p-name">Saint Gobain</span><span class="p-sep">·</span>
-      <span class="p-name">Ozone</span><span class="p-sep">·</span>
-      <span class="p-name">Ebco</span><span class="p-sep">·</span>
-      <span class="p-name">Aristo</span><span class="p-sep">·</span>
-      <span class="p-name">Century</span><span class="p-sep">·</span>
-      <span class="p-name">Greenply</span><span class="p-sep">·</span>
-      <span class="p-name">Austin</span><span class="p-sep">·</span>
-      <span class="p-name">Siam Ply</span><span class="p-sep">·</span>
-      <span class="p-name">Gurjan Ply</span><span class="p-sep">·</span>
-      <span class="p-name">Hafele</span><span class="p-sep">·</span>
-      <span class="p-name">Hettich</span><span class="p-sep">·</span>
-      <span class="p-name">Gyproc</span><span class="p-sep">·</span>
-      <span class="p-name">Saint Gobain</span><span class="p-sep">·</span>
-      <span class="p-name">Ozone</span><span class="p-sep">·</span>
-      <span class="p-name">Ebco</span><span class="p-sep">·</span>
-      <span class="p-name">Aristo</span><span class="p-sep">·</span>
+      <div class="logo-box">Century</div>
+      <div class="logo-box">Greenply</div>
+      <div class="logo-box">Austin</div>
+      <div class="logo-box">Siam Ply</div>
+      <div class="logo-box">Gurjan Ply</div>
+      <div class="logo-box">Hafele</div>
+      <div class="logo-box">Hettich</div>
+      <div class="logo-box">Gyproc</div>
+      <div class="logo-box">Saint Gobain</div>
+      <div class="logo-box">Ozone</div>
+      <div class="logo-box">Ebco</div>
+      <div class="logo-box">Aristo</div>
+      <div class="logo-box">Century</div>
+      <div class="logo-box">Greenply</div>
+      <div class="logo-box">Austin</div>
+      <div class="logo-box">Siam Ply</div>
+      <div class="logo-box">Gurjan Ply</div>
+      <div class="logo-box">Hafele</div>
+      <div class="logo-box">Hettich</div>
+      <div class="logo-box">Gyproc</div>
+      <div class="logo-box">Saint Gobain</div>
+      <div class="logo-box">Ozone</div>
+      <div class="logo-box">Ebco</div>
+      <div class="logo-box">Aristo</div>
     </div>
   </div>
 </section>
@@ -891,20 +948,7 @@
     updateProcess();
   });
 
-  // Rotating hero text — exact phrases from client data only
-  const phrases = ['Crafting spaces', 'Visual To Reality'];
-  let idx = 0;
-  const rotEl = document.getElementById('rotText');
-  setInterval(() => {
-    rotEl.classList.add('fade');
-    setTimeout(() => {
-      idx = (idx + 1) % phrases.length;
-      rotEl.textContent = phrases[idx];
-      rotEl.classList.remove('fade');
-    }, 500);
-  }, 3500);
-
-  // Popup modal — triggers at 50% scroll, once per browser session
+  // Popup modal — triggers when user scrolls past 70% of viewport height
   const modalBg = document.getElementById('modalBg');
   const modalClose = document.getElementById('modalClose');
   let shown = sessionStorage.getItem('popupShown');
