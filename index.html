@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: 'Inter', sans-serif; background: #0f0b06; color: #f5e8c8; overflow-x: hidden; }
 
     :root {
@@ -361,26 +361,63 @@
     }
     .modal-close:hover { color: var(--gold); }
 
+    /* Hamburger button — hidden on desktop */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 1001;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--cream); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .nav-drawer {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,7,2,0.98); z-index: 1000;
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      color: var(--cream); text-decoration: none; font-size: 1.3rem;
+      letter-spacing: 3px; text-transform: uppercase; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-drawer a:hover { color: var(--gold); }
+    .nav-drawer .drawer-wa {
+      margin-top: 12px; background: #25D366; color: #fff !important;
+      padding: 14px 36px; border-radius: 3px; font-size: 0.9rem !important;
+      letter-spacing: 2px;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       header, header.scrolled { padding: 16px 32px; }
-      .hero-inner { grid-template-columns: 1fr; padding: 120px 32px 60px; gap: 40px; }
+      .hero-inner { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
       .hero-socials { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-img-box { aspect-ratio: 16/9; }
       .services-grid { grid-template-columns: repeat(3, 1fr); }
-      .process-grid { grid-template-columns: 1fr; gap: 0; }
-      .proc-item.no-border { border-bottom: 1px solid rgba(212,168,67,0.08); }
-      .proc-item:last-child { border-bottom: none; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
       .sec-in { padding: 0 32px; }
+      .hero-watermark { font-size: clamp(100px, 30vw, 200px); }
     }
     @media (max-width: 640px) {
       nav { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-watermark { display: none; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .spec-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
+      .footer-in { padding: 0 24px; }
       .hero-stats { gap: 28px; }
+      .hero-form-card { padding: 28px 20px; }
+      .modal-box { padding: 36px 24px; margin: 16px; max-width: calc(100vw - 32px); }
+      .sec { padding: 64px 0; }
     }
   </style>
 </head>
@@ -402,7 +439,20 @@
     <a href="#contact">Contact</a>
     <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank" class="btn-quote">Get a Quote</a>
   </nav>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- Mobile nav drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#about"      onclick="closeDrawer()">About</a>
+  <a href="#services"   onclick="closeDrawer()">Services</a>
+  <a href="#process"    onclick="closeDrawer()">Process</a>
+  <a href="#partners"   onclick="closeDrawer()">Partners</a>
+  <a href="#contact"    onclick="closeDrawer()">Contact</a>
+  <a href="https://wa.me/919849095984?text=Hi%20Supriyaa%2C%20I%27m%20interested%20in%20interior%20design%20services." target="_blank" class="drawer-wa" onclick="closeDrawer()">Chat on WhatsApp</a>
+</div>
 
 
 <!-- ══════════════════════════════════
@@ -908,6 +958,18 @@
     const message = form.querySelector('[name="message"]').value.trim();
     const text = `Hi Supriyaa, I'm interested in interior design services.\n\nName: ${name}\nPhone: ${phone}\nArea: ${area}${message ? '\nProject: ' + message : ''}`;
     window.open('https://wa.me/919849095984?text=' + encodeURIComponent(text), '_blank');
+  }
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navDrawer  = document.getElementById('navDrawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navDrawer.classList.toggle('open');
+  });
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    navDrawer.classList.remove('open');
   }
 
   // Sticky header

@@ -27,6 +27,7 @@
 - Logo: "VTR" (gold, Playfair Display) + "Projects & Interiors" sub-label
 - Nav links: About · Services · Process · Partners · Contact · Get a Quote
 - "Get a Quote" links to WhatsApp
+- **Mobile (≤640px):** Nav hidden, hamburger button shown — opens full-screen drawer with all nav links + WhatsApp CTA
 
 ### 2. Hero
 - Full-viewport height
