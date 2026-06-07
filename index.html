@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VTR Projects & Interiors | Interior Design Hyderabad</title>
-  <meta name="description" content="VTR Projects & Interiors — Visual To Reality. 100+ projects completed. Interior design for homes and offices across Hyderabad. Crafting spaces since 2021." />
+  <meta name="description" content="VTR Projects &amp; Interiors, Visual To Reality. 100+ projects completed. Interior design for homes and offices across Hyderabad. Crafting spaces since 2021." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,18 +25,26 @@
     /* ── HEADER ── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 60px;
-      transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+      display: flex; align-items: center; justify-content: flex-end;
+      height: 70px;
+      padding: 0 60px;
+      overflow: visible;
+      background: rgba(250,248,244,0.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.08);
+      transition: background 0.35s, box-shadow 0.35s;
     }
     header.scrolled {
       background: rgba(250,248,244,0.97);
-      padding: 14px 60px;
+      height: 60px; padding: 0 60px;
       box-shadow: 0 2px 20px rgba(0,0,0,0.1);
       backdrop-filter: blur(8px);
     }
-    .logo { text-decoration: none; line-height: 1; display: flex; align-items: center; }
-    .logo img { height: 180px; width: auto; display: block; border-radius: 4px; }
+    .hero-logo {
+      position: absolute; top: 40px; left: 100px;
+      z-index: 901; display: block;
+    }
+    .hero-logo img { height: 200px; width: auto; display: block; border-radius: 4px; filter: drop-shadow(0 6px 28px rgba(0,0,0,0.5)) drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
     nav { display: flex; align-items: center; gap: 32px; }
     nav a { color: var(--cream); text-decoration: none; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; opacity: 0.65; transition: color 0.2s, opacity 0.2s; }
     nav a:hover { color: var(--gold); opacity: 1; }
@@ -49,8 +57,7 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        linear-gradient(105deg, rgba(250,248,244,0.96) 0%, rgba(250,248,244,0.55) 50%, rgba(250,248,244,0.82) 100%),
-        url('logo.png') right -40px center / 580px auto no-repeat;
+        url('Hero.png') center / cover no-repeat;
     }
     .hero-inner {
       position: relative; z-index: 2;
@@ -58,6 +65,12 @@
       gap: 64px; align-items: center;
       max-width: 1200px; margin: 0 auto;
       padding: 140px 60px 80px; width: 100%;
+    }
+    .hero-left {
+      background: rgba(250,248,244,0.70);
+      backdrop-filter: blur(6px);
+      border-radius: 6px;
+      padding: 40px 36px;
     }
 
     /* Floating social strip */
@@ -71,7 +84,7 @@
       text-decoration: none; transition: transform 0.2s;
     }
     .soc-icon:hover { transform: scale(1.12); }
-    .soc-icon.wa { background: #25D366; box-shadow: 0 4px 14px rgba(37,211,102,0.35); }
+    .soc-icon.wa { background: #25D366; box-shadow: 0 0 0 3px #fff, 0 4px 14px rgba(37,211,102,0.35); }
     .soc-icon svg { width: 19px; height: 19px; fill: #fff; }
 
     /* Hero left */
@@ -405,7 +418,7 @@
       position: fixed; bottom: 26px; right: 26px; z-index: 800;
       width: 54px; height: 54px; border-radius: 50%;
       background: #25D366; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 18px rgba(37,211,102,0.4);
+      box-shadow: 0 0 0 3px #fff, 0 4px 18px rgba(37,211,102,0.4);
       text-decoration: none; transition: transform 0.2s;
     }
     .wa-float:hover { transform: scale(1.08); }
@@ -497,9 +510,6 @@
      HEADER
 ══════════════════════════════════ -->
 <header id="mainHeader">
-  <a href="#home" class="logo">
-    <img src="logo.png" alt="VTR Interiors — Vision To Reality">
-  </a>
   <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -540,18 +550,22 @@
     </a>
   </div>
 
+  <a href="#home" class="hero-logo">
+    <img src="logo.png" alt="VTR Interiors">
+  </a>
+
   <div class="hero-watermark" aria-hidden="true">VTR</div>
 
   <div class="hero-inner">
 
     <!-- Left: Headline + stats -->
-    <div>
+    <div class="hero-left">
       <h1 class="hero-headline">Visual To Reality</h1>
       <p class="hero-italic">Crafting spaces</p>
       <div class="hero-rule"></div>
       <p class="hero-desc">
-        Serving Jubilee Hills, Miyapur, Kukatpally, Anand Bagh, Tarnaka, Secunderabad, Koti and beyond —
-        residential and commercial interior design from concept to completion.
+        Serving Jubilee Hills, Miyapur, Kukatpally, Anand Bagh, Tarnaka, Secunderabad, Koti and beyond.
+        Residential and commercial interior design from concept to completion.
       </p>
       <div class="hero-stats">
         <div>
@@ -615,7 +629,7 @@
 
       <div class="about-img-box">
         <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
-        <span>Founder Photo — Coming Soon</span>
+        <span>Founder Photo Coming Soon</span>
       </div>
 
       <div class="about-text">
@@ -624,7 +638,7 @@
         <p>The name VTR, <em>Visual To Reality</em>, defines our purpose: turning ideas on paper into spaces that are functional, aesthetic, and alive. We work with clients to sketch their dream and craft environments that bring visual contentment and a lasting sense of place.</p>
         <div class="philosophy-block">
           <div class="phi-label">Design Philosophy</div>
-          <p class="phi-text">Our design philosophy works on the principle of form following function. Design is not about making beautiful spaces — it is about manipulating the environment to improve human experience and behaviour. It bridges the gap between art and architecture; the space we inhabit deeply shapes how we think, feel and function.</p>
+          <p class="phi-text">Our design philosophy works on the principle of form following function. Design is not about making beautiful spaces. It is about manipulating the environment to improve human experience and behaviour. It bridges the gap between art and architecture; the space we inhabit deeply shapes how we think, feel and function.</p>
         </div>
       </div>
 
@@ -641,7 +655,7 @@
     <div class="sec-label">What We Do</div>
     <h2 class="sec-title">Our Range of Services</h2>
     <div class="sec-rule"></div>
-    <p class="sec-desc">Designing spaces right from scratch to completion — flooring, false ceiling, electrical, carpentry, plumbing, painting, HVAC, waterproofing, civil works. Give us a home or office with a plain wall and we fill it with the design you dreamt.</p>
+    <p class="sec-desc">Designing spaces right from scratch to completion: flooring, false ceiling, electrical, carpentry, plumbing, painting, HVAC, waterproofing, civil works. Give us a home or office with a plain wall and we fill it with the design you dreamt.</p>
 
     <div class="services-grid">
 
@@ -785,10 +799,10 @@
       <div class="proc-step"><div class="proc-step-num">03</div><div class="proc-step-title">Design agreement</div></div>
       <div class="proc-step"><div class="proc-step-num">04</div><div class="proc-step-title">Concept design &amp; space planning</div></div>
       <div class="proc-step"><div class="proc-step-num">05</div><div class="proc-step-title">Client review on layout</div></div>
-      <div class="proc-step"><div class="proc-step-num">06</div><div class="proc-step-title">Design and development — 2D and 3D</div></div>
+      <div class="proc-step"><div class="proc-step-num">06</div><div class="proc-step-title">Design and development 2D and 3D</div></div>
       <div class="proc-step"><div class="proc-step-num">07</div><div class="proc-step-title">Technical drawings and documents</div></div>
       <div class="proc-step"><div class="proc-step-num">08</div><div class="proc-step-title">Contract briefing</div></div>
-      <div class="proc-step"><div class="proc-step-num">09</div><div class="proc-step-title">Site implementation — bringing life</div></div>
+      <div class="proc-step"><div class="proc-step-num">09</div><div class="proc-step-title">Site implementation, bringing life</div></div>
     </div>
   </div>
 </section>
@@ -1036,7 +1050,7 @@
 
       <div>
         <div class="f-brand-name">VTR INTERIORS</div>
-        <p class="f-brand-tag">Visual To Reality — crafting spaces with aesthetic appeal and ambience. Serving Hyderabad since 2021.</p>
+        <p class="f-brand-tag">Visual To Reality, crafting spaces with aesthetic appeal and ambience. Serving Hyderabad since 2021.</p>
         <div class="f-socials">
           <!-- WhatsApp -->
           <a class="f-soc" href="https://wa.me/919849095984" target="_blank" title="WhatsApp">
