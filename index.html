@@ -202,21 +202,15 @@
     }
     .ps-card {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 4px; padding: 28px 20px 36px;
+      border-radius: 4px; padding: 28px 20px 28px;
       position: relative;
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
     .ps-card:hover {
       border-color: rgba(175,135,35,0.4);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+      box-shadow: inset 3px 0 0 var(--gold), 0 6px 24px rgba(0,0,0,0.09);
       transform: translateY(-3px);
     }
-    .ps-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; width: 3px; height: 100%;
-      background: var(--gold); opacity: 0; transition: opacity 0.3s;
-    }
-    .ps-card:hover::before { opacity: 1; }
     .ps-num {
       font-family: 'Playfair Display', serif;
       font-size: 3rem; font-weight: 700; line-height: 1;
@@ -227,25 +221,81 @@
       font-family: 'Playfair Display', serif;
       font-size: 0.9rem; color: var(--cream); line-height: 1.55;
     }
-    /* Direction badge */
-    .ps-badge {
-      position: absolute; bottom: 10px; right: 14px;
-      font-size: 1.1rem; color: var(--gold); opacity: 0.6; line-height: 1;
+
+    /* ── Forward arrow: line + right-pointing tip (steps 01–04) ── */
+    .ps-fwd::after {
+      content: ''; position: absolute;
+      right: -13px; top: 50%; transform: translateY(-50%);
+      width: 13px; height: 2px;
+      background: rgba(175,135,35,0.55); z-index: 2;
     }
-    .ps-badge-l { right: auto; left: 14px; }
-    /* Turn connector cell */
-    .ps-turncell {
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; color: var(--gold); opacity: 0.45;
+    .ps-fwd::before {
+      content: ''; position: absolute;
+      right: -20px; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid rgba(175,135,35,0.65);
+      z-index: 3;
     }
+
+    /* ── Reverse arrow: left-pointing tip + line (steps 07–09) ── */
+    /* Tip points LEFT, appears on right side of card (incoming from right) */
+    .ps-rev::before {
+      content: ''; position: absolute;
+      right: 0; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 7px solid rgba(175,135,35,0.65);
+      z-index: 3;
+    }
+    .ps-rev::after {
+      content: ''; position: absolute;
+      right: -20px; top: 50%; transform: translateY(-50%);
+      width: 13px; height: 2px;
+      background: rgba(175,135,35,0.55); z-index: 2;
+    }
+
+    /* ── Step 06 entry: incoming arrowhead from U-turn ── */
+    .ps-row2-start::before {
+      content: ''; position: absolute;
+      right: -7px; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-right: 7px solid rgba(175,135,35,0.65);
+      z-index: 3;
+    }
+
+    /* ── U-turn connector (col 5, row 2) ── */
+    .ps-turncell { position: relative; }
+    /* Vertical segment: goes UP from centre into gap to step 05 */
+    .ps-turncell::before {
+      content: ''; position: absolute;
+      left: 50%; transform: translateX(-50%);
+      top: -20px; width: 2px;
+      height: calc(50% + 20px);
+      background: rgba(175,135,35,0.55);
+    }
+    /* Horizontal segment: goes LEFT from centre to step 06 right edge */
+    .ps-turncell::after {
+      content: ''; position: absolute;
+      top: 50%; transform: translateY(-50%);
+      left: -27px; right: 50%;
+      height: 2px;
+      background: rgba(175,135,35,0.55);
+    }
+
     @media (max-width: 900px) {
       .ps-wrap { grid-template-columns: repeat(3, 1fr); }
       .ps-card, .ps-turncell { grid-column: auto !important; grid-row: auto !important; }
       .ps-turncell { display: none; }
+      .ps-fwd::before, .ps-fwd::after,
+      .ps-rev::before, .ps-rev::after,
+      .ps-row2-start::before { display: none; }
     }
-    @media (max-width: 560px) {
-      .ps-wrap { grid-template-columns: 1fr 1fr; }
-    }
+    @media (max-width: 560px) { .ps-wrap { grid-template-columns: 1fr 1fr; } }
 
     /* ── CTA ── */
     .cta-section { background: #1c1410; padding: 96px 0; text-align: center; }
@@ -827,18 +877,18 @@
     <div class="sec-rule"></div>
     <div class="ps-wrap">
       <!-- Row 1: left → right -->
-      <div class="ps-card" style="grid-column:1;grid-row:1"><div class="ps-num">01</div><div class="ps-title">Onboarding and consultation</div><span class="ps-badge">›</span></div>
-      <div class="ps-card" style="grid-column:2;grid-row:1"><div class="ps-num">02</div><div class="ps-title">Site measurement and assessment</div><span class="ps-badge">›</span></div>
-      <div class="ps-card" style="grid-column:3;grid-row:1"><div class="ps-num">03</div><div class="ps-title">Design agreement</div><span class="ps-badge">›</span></div>
-      <div class="ps-card" style="grid-column:4;grid-row:1"><div class="ps-num">04</div><div class="ps-title">Concept design &amp; space planning</div><span class="ps-badge">›</span></div>
-      <div class="ps-card" style="grid-column:5;grid-row:1"><div class="ps-num">05</div><div class="ps-title">Client review on layout</div><span class="ps-badge">↓</span></div>
-      <!-- Turn connector -->
-      <div class="ps-turncell" style="grid-column:5;grid-row:2">↲</div>
+      <div class="ps-card ps-fwd" style="grid-column:1;grid-row:1"><div class="ps-num">01</div><div class="ps-title">Onboarding and consultation</div></div>
+      <div class="ps-card ps-fwd" style="grid-column:2;grid-row:1"><div class="ps-num">02</div><div class="ps-title">Site measurement and assessment</div></div>
+      <div class="ps-card ps-fwd" style="grid-column:3;grid-row:1"><div class="ps-num">03</div><div class="ps-title">Design agreement</div></div>
+      <div class="ps-card ps-fwd" style="grid-column:4;grid-row:1"><div class="ps-num">04</div><div class="ps-title">Concept design &amp; space planning</div></div>
+      <div class="ps-card" style="grid-column:5;grid-row:1"><div class="ps-num">05</div><div class="ps-title">Client review on layout</div></div>
+      <!-- U-turn connector -->
+      <div class="ps-turncell" style="grid-column:5;grid-row:2"></div>
       <!-- Row 2: right → left (06 at col 4, ends at col 1 under 01) -->
-      <div class="ps-card" style="grid-column:4;grid-row:2"><div class="ps-num">06</div><div class="ps-title">Design and development 2D and 3D</div><span class="ps-badge ps-badge-l">‹</span></div>
-      <div class="ps-card" style="grid-column:3;grid-row:2"><div class="ps-num">07</div><div class="ps-title">Technical drawings and documents</div><span class="ps-badge ps-badge-l">‹</span></div>
-      <div class="ps-card" style="grid-column:2;grid-row:2"><div class="ps-num">08</div><div class="ps-title">Contract briefing</div><span class="ps-badge ps-badge-l">‹</span></div>
-      <div class="ps-card" style="grid-column:1;grid-row:2"><div class="ps-num">09</div><div class="ps-title">Site implementation, bringing life</div></div>
+      <div class="ps-card ps-row2-start" style="grid-column:4;grid-row:2"><div class="ps-num">06</div><div class="ps-title">Design and development 2D and 3D</div></div>
+      <div class="ps-card ps-rev" style="grid-column:3;grid-row:2"><div class="ps-num">07</div><div class="ps-title">Technical drawings and documents</div></div>
+      <div class="ps-card ps-rev" style="grid-column:2;grid-row:2"><div class="ps-num">08</div><div class="ps-title">Contract briefing</div></div>
+      <div class="ps-card ps-rev" style="grid-column:1;grid-row:2"><div class="ps-num">09</div><div class="ps-title">Site implementation, bringing life</div></div>
     </div>
   </div>
 </section>
