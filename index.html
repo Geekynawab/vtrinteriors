@@ -193,57 +193,59 @@
     .svc-tag { font-size: 0.62rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
 
     /* ── PROCESS ── */
-    .process-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; margin-top: 52px;
+    /* ── PROCESS SNAKE ── */
+    .ps-wrap {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-top: 52px;
     }
-    .proc-step {
+    .ps-card {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 4px; padding: 32px 28px;
+      border-radius: 4px; padding: 28px 20px 36px;
       position: relative;
       transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
-    .proc-step:hover {
+    .ps-card:hover {
       border-color: rgba(175,135,35,0.4);
       box-shadow: 0 6px 24px rgba(0,0,0,0.09);
       transform: translateY(-3px);
     }
-    .proc-step::before {
+    .ps-card::before {
       content: ''; position: absolute;
       top: 0; left: 0; width: 3px; height: 100%;
-      background: var(--gold); opacity: 0;
-      transition: opacity 0.3s;
+      background: var(--gold); opacity: 0; transition: opacity 0.3s;
     }
-    .proc-step:hover::before { opacity: 1; }
-    /* Right arrow between steps — hidden on last card of each row */
-    .proc-step::after {
-      content: '⟶';
-      position: absolute; right: -18px; top: 50%;
-      transform: translateY(-50%);
-      color: var(--gold); font-size: 1.4rem; font-weight: 700; opacity: 0.8;
-      z-index: 2; pointer-events: none; letter-spacing: -2px;
-    }
-    .proc-step:nth-child(3n)::after { display: none; }
-    @media (max-width: 1024px) {
-      .proc-step:nth-child(3n)::after { display: block; }
-      .proc-step:nth-child(2n)::after { display: none; }
-    }
-    @media (max-width: 640px) {
-      .proc-step::after { display: none; }
-    }
-    .proc-step-num {
+    .ps-card:hover::before { opacity: 1; }
+    .ps-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3.2rem; font-weight: 700; line-height: 1;
-      color: #9a7a14; margin-bottom: 14px;
-      transition: color 0.3s;
+      font-size: 3rem; font-weight: 700; line-height: 1;
+      color: #9a7a14; margin-bottom: 12px; transition: color 0.3s;
     }
-    .proc-step:hover .proc-step-num { color: #7a5e0a; }
-    .proc-step-title {
+    .ps-card:hover .ps-num { color: #7a5e0a; }
+    .ps-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: var(--cream); line-height: 1.55;
+      font-size: 0.9rem; color: var(--cream); line-height: 1.55;
     }
-    @media (max-width: 1024px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px)  { .process-grid { grid-template-columns: 1fr; } }
+    /* Direction badge */
+    .ps-badge {
+      position: absolute; bottom: 10px; right: 14px;
+      font-size: 1.1rem; color: var(--gold); opacity: 0.6; line-height: 1;
+    }
+    .ps-badge-l { right: auto; left: 14px; }
+    /* Turn connector cell */
+    .ps-turncell {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--gold); opacity: 0.45;
+    }
+    @media (max-width: 900px) {
+      .ps-wrap { grid-template-columns: repeat(3, 1fr); }
+      .ps-card, .ps-turncell { grid-column: auto !important; grid-row: auto !important; }
+      .ps-turncell { display: none; }
+    }
+    @media (max-width: 560px) {
+      .ps-wrap { grid-template-columns: 1fr 1fr; }
+    }
 
     /* ── CTA ── */
     .cta-section { background: #1c1410; padding: 96px 0; text-align: center; }
@@ -823,16 +825,20 @@
     <div class="sec-label">How We Work</div>
     <h2 class="sec-title">The VTR Client Journey</h2>
     <div class="sec-rule"></div>
-    <div class="process-grid">
-      <div class="proc-step"><div class="proc-step-num">01</div><div class="proc-step-title">Onboarding and consultation</div></div>
-      <div class="proc-step"><div class="proc-step-num">02</div><div class="proc-step-title">Site measurement and assessment</div></div>
-      <div class="proc-step"><div class="proc-step-num">03</div><div class="proc-step-title">Design agreement</div></div>
-      <div class="proc-step"><div class="proc-step-num">04</div><div class="proc-step-title">Concept design &amp; space planning</div></div>
-      <div class="proc-step"><div class="proc-step-num">05</div><div class="proc-step-title">Client review on layout</div></div>
-      <div class="proc-step"><div class="proc-step-num">06</div><div class="proc-step-title">Design and development 2D and 3D</div></div>
-      <div class="proc-step"><div class="proc-step-num">07</div><div class="proc-step-title">Technical drawings and documents</div></div>
-      <div class="proc-step"><div class="proc-step-num">08</div><div class="proc-step-title">Contract briefing</div></div>
-      <div class="proc-step"><div class="proc-step-num">09</div><div class="proc-step-title">Site implementation, bringing life</div></div>
+    <div class="ps-wrap">
+      <!-- Row 1: left → right -->
+      <div class="ps-card" style="grid-column:1;grid-row:1"><div class="ps-num">01</div><div class="ps-title">Onboarding and consultation</div><span class="ps-badge">›</span></div>
+      <div class="ps-card" style="grid-column:2;grid-row:1"><div class="ps-num">02</div><div class="ps-title">Site measurement and assessment</div><span class="ps-badge">›</span></div>
+      <div class="ps-card" style="grid-column:3;grid-row:1"><div class="ps-num">03</div><div class="ps-title">Design agreement</div><span class="ps-badge">›</span></div>
+      <div class="ps-card" style="grid-column:4;grid-row:1"><div class="ps-num">04</div><div class="ps-title">Concept design &amp; space planning</div><span class="ps-badge">›</span></div>
+      <div class="ps-card" style="grid-column:5;grid-row:1"><div class="ps-num">05</div><div class="ps-title">Client review on layout</div><span class="ps-badge">↓</span></div>
+      <!-- Turn connector -->
+      <div class="ps-turncell" style="grid-column:5;grid-row:2">↲</div>
+      <!-- Row 2: right → left (06 at col 4, ends at col 1 under 01) -->
+      <div class="ps-card" style="grid-column:4;grid-row:2"><div class="ps-num">06</div><div class="ps-title">Design and development 2D and 3D</div><span class="ps-badge ps-badge-l">‹</span></div>
+      <div class="ps-card" style="grid-column:3;grid-row:2"><div class="ps-num">07</div><div class="ps-title">Technical drawings and documents</div><span class="ps-badge ps-badge-l">‹</span></div>
+      <div class="ps-card" style="grid-column:2;grid-row:2"><div class="ps-num">08</div><div class="ps-title">Contract briefing</div><span class="ps-badge ps-badge-l">‹</span></div>
+      <div class="ps-card" style="grid-column:1;grid-row:2"><div class="ps-num">09</div><div class="ps-title">Site implementation, bringing life</div></div>
     </div>
   </div>
 </section>
