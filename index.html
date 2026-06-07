@@ -41,10 +41,15 @@
       backdrop-filter: blur(8px);
     }
     .hero-logo {
-      position: absolute; top: 40px; left: 100px;
+      position: absolute; top: 30px; left: 100px;
       z-index: 901; display: block;
+      background: rgba(20,12,5,0.52);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
     }
-    .hero-logo img { height: 200px; width: auto; display: block; border-radius: 4px; filter: drop-shadow(0 6px 28px rgba(0,0,0,0.5)) drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+    .hero-logo img { height: 260px; width: auto; display: block; border-radius: 4px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
     nav { display: flex; align-items: center; gap: 32px; }
     nav a { color: #f5ede0; text-decoration: none; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; opacity: 0.80; transition: color 0.2s, opacity 0.2s; }
     nav a:hover { color: var(--gold); opacity: 1; }
