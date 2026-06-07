@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VTR Projects & Interiors | Interior Design Hyderabad</title>
   <meta name="description" content="VTR Projects &amp; Interiors, Visual To Reality. 100+ projects completed. Interior design for homes and offices across Hyderabad. Crafting spaces since 2021." />
+  <link rel="icon" type="image/png" href="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -404,6 +405,22 @@
     @media (max-width: 1024px) { .gallery-masonry { columns: 3; padding: 0 32px; } }
     @media (max-width: 640px) { .gallery-masonry { columns: 1; padding: 0 20px; } }
 
+    /* ── SECTION DIVIDER ── */
+    .sec-divider { display: flex; justify-content: center; align-items: center; padding: 8px 0; background: transparent; }
+    .sec-divider img { height: 40px; width: auto; opacity: 0.18; filter: sepia(1) saturate(2) hue-rotate(10deg); }
+
+    /* ── CTA WATERMARK ── */
+    .cta-section { position: relative; overflow: hidden; }
+    .cta-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 320px; width: auto; opacity: 0.04; pointer-events: none; z-index: 0; }
+    .cta-section .sec-in { position: relative; z-index: 1; }
+
+    /* ── ABOUT WATERMARK ── */
+    .about-img-box { position: relative; }
+    .about-logo-wm { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; opacity: 0.08; pointer-events: none; }
+
+    /* ── FOOTER LOGO ── */
+    .f-logo { height: 80px; width: auto; margin-bottom: 12px; display: block; opacity: 0.9; }
+
     /* ── FOOTER ── */
     footer { background: #0f0b06; border-top: 1px solid rgba(175,135,35,0.12); padding: 64px 0 28px; }
     .footer-in { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
@@ -628,6 +645,8 @@
 </section>
 
 
+<div class="sec-divider"><img src="logo.png" alt=""></div>
+
 <!-- ══════════════════════════════════
      ABOUT
 ══════════════════════════════════ -->
@@ -639,6 +658,7 @@
     <div class="about-grid">
 
       <div class="about-img-box">
+        <img src="logo.png" class="about-logo-wm" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
         <span>Founder Photo Coming Soon</span>
       </div>
@@ -657,6 +677,8 @@
   </div>
 </section>
 
+
+<div class="sec-divider"><img src="logo.png" alt=""></div>
 
 <!-- ══════════════════════════════════
      SERVICES
@@ -796,6 +818,8 @@
 </section>
 
 
+<div class="sec-divider"><img src="logo.png" alt=""></div>
+
 <!-- ══════════════════════════════════
      PROCESS
 ══════════════════════════════════ -->
@@ -844,6 +868,8 @@
   </div>
 </section>
 
+
+<div class="sec-divider"><img src="logo.png" alt=""></div>
 
 <!-- ══════════════════════════════════
      GALLERY
@@ -1036,10 +1062,13 @@
 </section>
 
 
+<div class="sec-divider"><img src="logo.png" alt=""></div>
+
 <!-- ══════════════════════════════════
      CTA
 ══════════════════════════════════ -->
 <section class="cta-section">
+  <img src="logo.png" class="cta-watermark" aria-hidden="true">
   <div class="sec-in">
     <div class="sec-label" style="color: rgba(212,168,67,0.7);">Get Started</div>
     <h2 class="cta-headline">Ready to Transform Your Space?</h2>
@@ -1060,6 +1089,7 @@
     <div class="footer-grid">
 
       <div>
+        <img src="logo.png" alt="VTR Interiors" class="f-logo">
         <div class="f-brand-name">VTR INTERIORS</div>
         <p class="f-brand-tag">Visual To Reality, crafting spaces with aesthetic appeal and ambience. Serving Hyderabad since 2021.</p>
         <div class="f-socials">
