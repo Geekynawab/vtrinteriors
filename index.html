@@ -35,9 +35,8 @@
       box-shadow: 0 2px 24px rgba(0,0,0,0.6);
       backdrop-filter: blur(8px);
     }
-    .logo { text-decoration: none; line-height: 1; }
-    .logo-main { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--gold); letter-spacing: 5px; font-weight: 700; display: block; }
-    .logo-sub { font-size: 0.58rem; color: var(--gold-dim); letter-spacing: 4px; text-transform: uppercase; display: block; margin-top: 3px; }
+    .logo { text-decoration: none; line-height: 1; display: flex; align-items: center; }
+    .logo img { height: 52px; width: auto; display: block; border-radius: 4px; }
     nav { display: flex; align-items: center; gap: 32px; }
     nav a { color: var(--cream); text-decoration: none; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; opacity: 0.8; transition: color 0.2s, opacity 0.2s; }
     nav a:hover { color: var(--gold); opacity: 1; }
@@ -426,8 +425,7 @@
 ══════════════════════════════════ -->
 <header id="mainHeader">
   <a href="#home" class="logo">
-    <span class="logo-main">VTR</span>
-    <span class="logo-sub">Projects & Interiors</span>
+    <img src="logo.png" alt="VTR Interiors — Vision To Reality">
   </a>
   <nav>
     <a href="#about">About</a>
