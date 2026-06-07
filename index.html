@@ -577,7 +577,7 @@
           <input type="tel" name="phone" placeholder="Phone Number" required />
         </div>
         <div class="fgrp">
-          <select name="area" required>
+          <select name="area" required onchange="toggleOther(this)">
             <option value="" disabled selected>Select Your Area</option>
             <option>Jubilee Hills</option>
             <option>Miyapur</option>
@@ -588,6 +588,9 @@
             <option>Koti</option>
             <option>Other</option>
           </select>
+        </div>
+        <div class="fgrp" id="heroOtherWrap" style="display:none;">
+          <input type="text" name="area_other" placeholder="Please specify your area" />
         </div>
         <div class="fgrp">
           <textarea name="message" placeholder="Tell us about your project..."></textarea>
@@ -1115,7 +1118,7 @@
         <input type="tel" name="phone" placeholder="Phone Number" required />
       </div>
       <div class="fgrp">
-        <select name="area" required>
+        <select name="area" required onchange="toggleOther(this)">
           <option value="" disabled selected>Select Your Area</option>
           <option>Jubilee Hills</option>
           <option>Miyapur</option>
@@ -1126,6 +1129,9 @@
           <option>Koti</option>
           <option>Other</option>
         </select>
+      </div>
+      <div class="fgrp" id="popupOtherWrap" style="display:none;">
+        <input type="text" name="area_other" placeholder="Please specify your area" />
       </div>
       <div class="fgrp">
         <textarea name="message" placeholder="Tell us about your project..."></textarea>
@@ -1193,12 +1199,19 @@
   });
 
   // Form → WhatsApp: collects fields and opens a pre-filled WhatsApp message to Supriyaa
+  function toggleOther(sel) {
+    const wrap = sel.closest('form').querySelector('[name="area_other"]').parentElement;
+    wrap.style.display = sel.value === 'Other' ? 'block' : 'none';
+  }
+
   function sendToWA(e, form) {
     e.preventDefault();
-    const name    = form.querySelector('[name="name"]').value.trim();
-    const phone   = form.querySelector('[name="phone"]').value.trim();
-    const area    = form.querySelector('[name="area"]').value;
-    const message = form.querySelector('[name="message"]').value.trim();
+    const name      = form.querySelector('[name="name"]').value.trim();
+    const phone     = form.querySelector('[name="phone"]').value.trim();
+    const areaEl    = form.querySelector('[name="area"]');
+    const areaOther = form.querySelector('[name="area_other"]').value.trim();
+    const area      = areaEl.value === 'Other' && areaOther ? areaOther : areaEl.value;
+    const message   = form.querySelector('[name="message"]').value.trim();
     const text = `Hi VTR Interiors, I would like to discuss about a home interior project of mine, and know more about your interior design options and services available.\n\nName: ${name}\nPhone: ${phone}\nArea: ${area}${message ? '\nProject: ' + message : ''}`;
     window.open('https://wa.me/919849095984?text=' + encodeURIComponent(text), '_blank');
   }
