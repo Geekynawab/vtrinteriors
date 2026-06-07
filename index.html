@@ -406,20 +406,21 @@
     @media (max-width: 640px) { .gallery-masonry { columns: 1; padding: 0 20px; } }
 
     /* ── SECTION DIVIDER ── */
-    .sec-divider { display: flex; justify-content: center; align-items: center; padding: 8px 0; background: transparent; }
-    .sec-divider img { height: 40px; width: auto; opacity: 0.18; filter: sepia(1) saturate(2) hue-rotate(10deg); }
+    .sec-divider { display: flex; justify-content: center; align-items: center; padding: 0; height: 48px; overflow: hidden; background: transparent; }
+    .sec-divider img { height: 120px; width: auto; opacity: 0.18; filter: sepia(1) saturate(2) hue-rotate(10deg); transform: scale(2.2); transform-origin: center 37.5%; }
 
     /* ── CTA WATERMARK ── */
     .cta-section { position: relative; overflow: hidden; }
-    .cta-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 320px; width: auto; opacity: 0.04; pointer-events: none; z-index: 0; }
+    .cta-watermark { position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; object-fit: contain; transform: translate(-50%, -50%) scale(2.2); transform-origin: center 37.5%; opacity: 0.05; pointer-events: none; z-index: 0; }
     .cta-section .sec-in { position: relative; z-index: 1; }
 
     /* ── ABOUT WATERMARK ── */
     .about-img-box { position: relative; }
-    .about-logo-wm { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; opacity: 0.08; pointer-events: none; }
+    .about-logo-wm { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: contain; transform: translate(-50%, -50%) scale(2.2); transform-origin: center 37.5%; opacity: 0.08; pointer-events: none; }
 
     /* ── FOOTER LOGO ── */
-    .f-logo { height: 180px; width: auto; margin-bottom: 12px; display: block; opacity: 0.9; }
+    .f-logo-wrap { width: 160px; height: 80px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .f-logo { width: 150px; height: 70px; object-fit: contain; display: block; transform: scale(2.2); transform-origin: center 37.5%; }
 
     /* ── FOOTER ── */
     footer { background: #0f0b06; border-top: 1px solid rgba(175,135,35,0.12); padding: 64px 0 28px; }
@@ -1089,7 +1090,7 @@
     <div class="footer-grid">
 
       <div>
-        <img src="logo.png" alt="VTR Interiors" class="f-logo">
+        <div class="f-logo-wrap"><img src="logo.png" alt="VTR Interiors" class="f-logo"></div>
         <div class="f-brand-name">VTR INTERIORS</div>
         <p class="f-brand-tag">Visual To Reality, crafting spaces with aesthetic appeal and ambience. Serving Hyderabad since 2021.</p>
         <div class="f-socials">
