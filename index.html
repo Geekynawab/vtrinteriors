@@ -161,12 +161,10 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start; margin-top: 56px; }
     .about-img-box {
       width: 100%; aspect-ratio: 3/4;
-      background: linear-gradient(145deg, #e8e2d8, #d8d0c4);
       border: 1px solid var(--border); border-radius: 3px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      color: var(--muted); font-size: 0.72rem; letter-spacing: 2px; text-align: center; gap: 10px;
+      overflow: hidden;
     }
-    .about-img-box svg { width: 40px; height: 40px; fill: rgba(175,135,35,0.25); }
+    .founder-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
     .about-text p { font-size: 0.92rem; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
     .philosophy-block { margin-top: 28px; padding: 26px 28px; border-left: 2px solid var(--gold); background: rgba(212,168,67,0.03); }
     .phi-label { font-size: 0.65rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
@@ -707,9 +705,7 @@
     <div class="about-grid">
 
       <div class="about-img-box">
-        <img src="logo.png" class="about-logo-wm" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/></svg>
-        <span>Founder Photo Coming Soon</span>
+        <img src="Founder pic.jpeg" alt="Supriyaa Sista, Founder — VTR Projects & Interiors" class="founder-photo">
       </div>
 
       <div class="about-text">
