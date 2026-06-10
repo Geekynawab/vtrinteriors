@@ -489,16 +489,18 @@
     .f-col a:hover { color: var(--gold); }
     .footer-bottom { border-top: 1px solid rgba(212,168,67,0.06); padding-top: 22px; text-align: center; font-size: 0.68rem; color: rgba(138,112,80,0.6); letter-spacing: 1.5px; }
 
-    /* ── FLOATING WA ── */
-    .wa-float {
+    /* ── BACK TO TOP ── */
+    .btt-btn {
       position: fixed; bottom: 26px; right: 26px; z-index: 800;
-      width: 54px; height: 54px; border-radius: 50%;
-      background: #25D366; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 3px #fff, 0 4px 18px rgba(37,211,102,0.4);
-      text-decoration: none; transition: transform 0.2s;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--gold); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(200,150,37,0.4);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.2s;
     }
-    .wa-float:hover { transform: scale(1.08); }
-    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    .btt-btn.visible { opacity: 1; pointer-events: auto; }
+    .btt-btn:hover { transform: scale(1.08); }
+    .btt-btn svg { width: 22px; height: 22px; fill: #fff; }
 
     /* ── POPUP MODAL ── */
     .modal-bg {
@@ -1178,8 +1180,10 @@
   </div>
 </footer>
 
-
-
+<!-- ── BACK TO TOP ── -->
+<button class="btt-btn" id="bttBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
 
 <!-- ══════════════════════════════════
      LIGHTBOX
@@ -1325,6 +1329,12 @@
   // Sticky header scroll
   window.addEventListener('scroll', () => {
     hdr.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Back to top
+  const bttBtn = document.getElementById('bttBtn');
+  window.addEventListener('scroll', () => {
+    bttBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
   // Popup modal — triggers when user scrolls past 70% of viewport height
