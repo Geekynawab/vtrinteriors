@@ -602,21 +602,28 @@
       .spec-grid { grid-template-columns: 1fr; }
       .ps-wrap { grid-template-columns: 1fr; gap: 36px; }
       .ps-card:not(:last-child)::before {
+        display: block;
         content: '';
         position: absolute;
         bottom: -28px; left: calc(50% - 1px);
         width: 2px; height: 20px;
         background: rgba(175,135,35,0.55);
         z-index: 2;
+        border: none;
       }
       .ps-card:not(:last-child)::after {
+        display: block;
         content: '';
         position: absolute;
         bottom: -36px; left: 50%;
+        top: auto; right: auto;
+        width: 0; height: 0;
         transform: translateX(-50%);
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-top: 9px solid rgba(175,135,35,0.65);
+        border-bottom: none;
+        background: none;
         z-index: 2;
       }
       .footer-grid { grid-template-columns: 1fr; }
